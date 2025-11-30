@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFO-MARKET - IT-бизнес будущего</title>
+    <title>INFO-MARKET - Профессиональная разработка сайтов</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!-- Status Bar -->
     <div class="status-bar">
-        <div class="logo"><a href="./index.html">INFO-MARKET</a></div>
-        <div>
-            <span id="currentTime">18:30</span>
+        <div class="logo">INFO-MARKET</div>
+        <div class="status-actions">
+            <a href="tel:+79999999999" class="status-link">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://t.me/V8R878" class="status-link">
+                <i class="fab fa-telegram"></i>
+            </a>
         </div>
     </div>
 
@@ -20,21 +25,17 @@
     <div class="main-container">
         <!-- Dock Navigation -->
         <div class="dock">
-            <div class="dock-app active" data-target="about">
-                <div class="app-icon">🚀</div>
-                <div class="app-name">О нас</div>
+            <div class="dock-app active" data-target="home">
+                <div class="app-icon">🏠</div>
+                <div class="app-name">Главная</div>
             </div>
-            <div class="dock-app" data-target="mission">
-                <div class="app-icon">💡</div>
-                <div class="app-name">Миссия</div>
+            <div class="dock-app" data-target="services">
+                <div class="app-icon">🛒</div>
+                <div class="app-name">Услуги</div>
             </div>
-            <div class="dock-app" data-target="ecosystem">
-                <div class="app-icon">📈</div>
-                <div class="app-name">Экосистема</div>
-            </div>
-            <div class="dock-app" data-target="results">
+            <div class="dock-app" data-target="cases">
                 <div class="app-icon">⭐</div>
-                <div class="app-name">Результаты</div>
+                <div class="app-name">Кейсы</div>
             </div>
             <div class="dock-app" data-target="contacts">
                 <div class="app-icon">👥</div>
@@ -42,789 +43,758 @@
             </div>
         </div>
 
-<!-- About Content -->
-<div class="content-area active" id="about">
-    <!-- Центрированный hero -->
-    <div class="about-hero-centered">
-        <div class="hero-content-centered">
-            <div class="hero-badge">INFO-MARKET</div>
-            <h1 class="hero-title-centered">IT-бизнес <span class="gradient-text">будущего</span></h1>
-            <p class="hero-subtitle-centered">Платформа, где встречаются создатели и пользователи цифровых продуктов</p>
-            
-            <div class="hero-stats-centered">
+        <!-- Home Content -->
+        <div class="content-area active" id="home">
+            <!-- Hero Section -->
+            <div class="hero-section-apple">
+                <div class="hero-content">
+                    <h1 class="hero-title-apple">
+                        <span class="hero-gradient">Профессиональные сайты</span>
+                        <br>для вашего бизнеса
+                    </h1>
+                    <p class="hero-subtitle-apple">
+                        Создаем продающие сайты, которые приносят реальных клиентов и увеличивают прибыль
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn-apple-primary" onclick="showSection('services')">
+                            <span>Выбрать сайт</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn-apple-secondary" onclick="showSection('cases')">
+                            <span>Смотреть кейсы</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card card-landing">
+                        <i class="fas fa-rocket"></i>
+                        <span>Лендинги</span>
+                    </div>
+                    <div class="floating-card card-corporate">
+                        <i class="fas fa-building"></i>
+                        <span>Компания</span>
+                    </div>
+                    <div class="floating-card card-shop">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Магазины</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section-apple">
                 <div class="stat-item">
-                    <div class="stat-number">150+</div>
-                    <div class="stat-label">проектов</div>
+                    <div class="stat-number">85+</div>
+                    <div class="stat-label">реализованных сайтов</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">99.9%</div>
-                    <div class="stat-label">надежность</div>
+                    <div class="stat-label">надежность хостинга</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">40%</div>
-                    <div class="stat-label">ROI</div>
+                    <div class="stat-label">рост конверсии в среднем</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">техническая поддержка</div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="content-section">
-        <div class="mission-statement">
-
-            
-            <div class="statement-grid">
-                <div class="statement-card">
-                    <div class="statement-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3>Меняющийся мир</h3>
-                    <p>Мир цифровых решений меняется каждый день. Мы создаем стабильность в этом хаосе.</p>
-                </div>
+            <!-- Philosophy Section -->
+            <div class="philosophy-section-apple">
+                <h2 class="section-title-apple">Наш подход</h2>
+                <p class="section-subtitle-apple">
+                    Мы создаем не просто красивые сайты, а эффективные инструменты для роста вашего бизнеса
+                </p>
                 
-                <div class="statement-card">
-                    <div class="statement-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <i class="fas fa-handshake"></i>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Ориентация на результат</h3>
+                        <p>Каждый сайт проектируем с учетом бизнес-целей и метрик конверсии</p>
                     </div>
-                    <h3>Встреча возможностей</h3>
-                    <p>Платформа, где встречаются создатели и пользователи цифровых продуктов.</p>
-                </div>
-                
-                <div class="statement-card">
-                    <div class="statement-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Новый формат</h3>
-                    <p>Цифровая экономика, где знания и технологии превращаются в возможности.</p>
-                </div>
-            </div>
-            
-            <div class="philosophy-section-centered">
-                <div class="philosophy-content-centered">
-                    <h3>Наша философия</h3>
-                    <p>INFO-MARKET — это не просто площадка. Это экосистема, где каждый цифровой актив находит свою ценность и применение.</p>
                     
-                    <div class="philosophy-points">
-                        <div class="point">
-                            <div class="point-marker"></div>
-                            <span>Прозрачность сделок</span>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-rocket"></i>
                         </div>
-                        <div class="point">
-                            <div class="point-marker"></div>
-                            <span>Сообщество профессионалов</span>
-                        </div>
-                        <div class="point">
-                            <div class="point-marker"></div>
-                            <span>Технологии будущего</span>
-                        </div>
+                        <h3>Скорость разработки</h3>
+                        <p>Лендинг за 3-5 дней, корпоративный сайт за 1-2 недели, магазин за 2-3 недели</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
- <!-- Mission Content -->
-<div class="content-area" id="mission">
-    <!-- Главная миссия -->
-    <div class="content-section">
-        <div class="mission-hero">
-            <div class="mission-hero-content">
-                <h2 class="section-title">
-                    <span class="section-icon">💡</span>
-                    Наша миссия
-                </h2>
-                <div class="mission-statement">
-                    <div class="mission-text">
-                        <p class="mission-lead">
-                            Мы хотим сделать информационные ресурсы таким же прозрачным и понятным активом, как недвижимость или техника.
-                        </p>
-                        <div class="mission-visual">
-                            <div class="visual-item">
-                                <div class="visual-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                    <i class="fas fa-home"></i>
-                                </div>
-                                <span>Недвижимость</span>
-                            </div>
-                            <div class="visual-arrow">→</div>
-                            <div class="visual-item">
-                                <div class="visual-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                    <i class="fas fa-laptop-code"></i>
-                                </div>
-                                <span>Цифровые активы</span>
-                            </div>
-                            <div class="visual-arrow">→</div>
-                            <div class="visual-item">
-                                <div class="visual-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <span>Инвестиции</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Три столпа миссии -->
-        <div class="mission-pillars">
-            <div class="pillar-card">
-                <div class="pillar-header">
-                    <div class="pillar-icon" style="background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="pillar-badge">Продажа</div>
-                </div>
-                <h3>Продать свой проект</h3>
-                <p>Реализуйте свой цифровой продукт и получите справедливую стоимость за вашу работу</p>
-                <ul class="pillar-features">
-                    <li><i class="fas fa-check"></i> Честная оценка</li>
-                    <li><i class="fas fa-check"></i> Быстрые выплаты</li>
-                    <li><i class="fas fa-check"></i> Юридическая поддержка</li>
-                </ul>
-                <div class="pillar-stats">
-                    <div class="stat">
-                        <div class="stat-number">85%</div>
-                        <div class="stat-label">успешных сделок</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pillar-card">
-                <div class="pillar-header">
-                    <div class="pillar-icon" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <div class="pillar-badge">Аренда</div>
-                </div>
-                <h3>Арендовать решение</h3>
-                <p>Получите доступ к готовым инструментам без долгосрочных обязательств и больших инвестиций</p>
-                <ul class="pillar-features">
-                    <li><i class="fas fa-check"></i> Гибкие условия</li>
-                    <li><i class="fas fa-check"></i> Техподдержка 24/7</li>
-                    <li><i class="fas fa-check"></i> Мгновенный доступ</li>
-                </ul>
-                <div class="pillar-stats">
-                    <div class="stat">
-                        <div class="stat-number">60%</div>
-                        <div class="stat-label">экономии</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pillar-card">
-                <div class="pillar-header">
-                    <div class="pillar-icon" style="background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 100%);">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="pillar-badge">Покупка</div>
-                </div>
-                <h3>Купить и масштабировать</h3>
-                <p>Приобретите готовый бизнес-инструмент и сразу начинайте получать прибыль</p>
-                <ul class="pillar-features">
-                    <li><i class="fas fa-check"></i> Готовые решения</li>
-                    <li><i class="fas fa-check"></i> Обучение команды</li>
-                    <li><i class="fas fa-check"></i> Помощь в интеграции</li>
-                </ul>
-                <div class="pillar-stats">
-                    <div class="stat">
-                        <div class="stat-number">3x</div>
-                        <div class="stat-label">рост за 6 месяцев</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Почему это актуально -->
-    <div class="content-section">
-        <div class="relevance-section">
-            <h2 class="section-title">
-                <span class="section-icon">📈</span>
-                Почему это актуально
-            </h2>
-            
-            <div class="relevance-grid">
-                <div class="relevance-card">
-                    <div class="relevance-visual">
-                        <div class="relevance-icon" style="background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="relevance-graph">
-                            <div class="graph-bar" style="height: 80%"></div>
-                            <div class="graph-bar" style="height: 60%"></div>
-                            <div class="graph-bar" style="height: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="relevance-content">
-                        <h3>Скорость</h3>
-                        <p>Бизнес ускоряется — время важнее, чем когда-либо. Готовые решения позволяют стартовать за дни, а не месяцы.</p>
-                        <div class="relevance-metrics">
-                            <div class="metric">
-                                <div class="metric-value">-85%</div>
-                                <div class="metric-label">время запуска</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-value">3д</div>
-                                <div class="metric-label">вместо 3мес</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relevance-card">
-                    <div class="relevance-visual">
-                        <div class="relevance-icon" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                        <div class="relevance-chart">
-                            <div class="chart-growth">📈</div>
-                            <div class="chart-value">+300%</div>
-                        </div>
-                    </div>
-                    <div class="relevance-content">
-                        <h3>Ценность</h3>
-                        <p>Цифровые активы становятся новой валютой в мире идей и технологий. Инвестируйте в будущее уже сегодня.</p>
-                        <div class="relevance-metrics">
-                            <div class="metric">
-                                <div class="metric-value">$2.3T</div>
-                                <div class="metric-label">рынок digital</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-value">45%</div>
-                                <div class="metric-label">рост в год</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relevance-card">
-                    <div class="relevance-visual">
-                        <div class="relevance-icon" style="background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 100%);">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <div class="relevance-structure">
-                            <div class="structure-layer">🌐 Платформа</div>
-                            <div class="structure-layer">🔧 Инструменты</div>
-                            <div class="structure-layer">🤝 Сообщество</div>
-                        </div>
-                    </div>
-                    <div class="relevance-content">
-                        <h3>Инфраструктура</h3>
-                        <p>Инфраструктура рынка до сих пор отсутствует — и мы её создаём. Единая экосистема для цифровых активов.</p>
-                        <div class="relevance-metrics">
-                            <div class="metric">
-                                <div class="metric-value">150+</div>
-                                <div class="metric-label">проектов</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-value">99.9%</div>
-                                <div class="metric-label">надежность</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Дополнительная статистика -->
-            <div class="market-stats">
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-number">10,000+</div>
-                        <div class="stat-desc">активных пользователей</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-number">$50M+</div>
-                        <div class="stat-desc">объем сделок</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-number">25+</div>
-                        <div class="stat-desc">стран присутствия</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-desc">безопасность сделок</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Ecosystem Content -->
-<div class="content-area" id="ecosystem">
-    <div class="ecosystem-hero">
-        <div class="ecosystem-badge">ЭКОСИСТЕМА</div>
-        <h1 class="ecosystem-title">IT-бизнес <span class="gradient-text">полного цикла</span></h1>
-        <p class="ecosystem-subtitle">От идеи до масштабирования — все в одной экосистеме</p>
-    </div>
-
-    <div class="content-section">
-        <div class="ecosystem-flow">
-            <div class="flow-step">
-                <div class="step-visual">
-                    <div class="step-icon" style="background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="step-connector"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-badge">Этап 1</div>
-                    <h3>Разработка</h3>
-                    <p>Создание современных digital-решений с использованием передовых технологий</p>
-                    <div class="step-features">
-                        <span class="feature-tag">🤖 AI Боты</span>
-                        <span class="feature-tag">🌐 Сайты</span>
-                        <span class="feature-tag">⛓️ Blockchain</span>
-                        <span class="feature-tag">📱 Приложения</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flow-step">
-                <div class="step-visual">
-                    <div class="step-icon" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="step-connector"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-badge">Этап 2</div>
-                    <h3>Сопровождение</h3>
-                    <p>Полная техническая поддержка и масштабирование ваших решений</p>
-                    <div class="step-features">
-                        <span class="feature-tag">🛡️ 24/7 Поддержка</span>
-                        <span class="feature-tag">📊 Мониторинг</span>
-                        <span class="feature-tag">🚀 Масштабирование</span>
-                        <span class="feature-tag">🔧 Оптимизация</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flow-step">
-                <div class="step-visual">
-                    <div class="step-icon" style="background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 100%);">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="step-connector"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-badge">Этап 3</div>
-                    <h3>Инновации</h3>
-                    <p>Внедрение инновационных решений и аналитика для роста бизнеса</p>
-                    <div class="step-features">
-                        <span class="feature-tag">🔍 Аналитика</span>
-                        <span class="feature-tag">💡 Инновации</span>
-                        <span class="feature-tag">🎯 Решения под ключ</span>
-                        <span class="feature-tag">📈 Оптимизация</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ecosystem-features">
-            <h2 class="section-title">
-                <span class="section-icon">⚡</span>
-                Ключевые преимущества
-            </h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-visual">
-                        <div class="feature-graph">
-                            <div class="graph-line" style="height: 80%"></div>
-                            <div class="graph-line" style="height: 60%"></div>
-                            <div class="graph-line" style="height: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Скорость +425%</h3>
-                        <p>Ускорение разработки и выхода на рынок благодаря готовым решениям</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-visual">
-                        <div class="feature-chart">
-                            <div class="chart-slice" style="--percentage: 60; --color: #4ECDC4;"></div>
-                            <div class="chart-slice" style="--percentage: 25; --color: #FF6B6B;"></div>
-                            <div class="chart-slice" style="--percentage: 15; --color: #FF9A8B;"></div>
-                        </div>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Эффективность 99.9%</h3>
-                        <p>Максимальная надежность и отказоустойчивость всех решений</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-visual">
-                        <div class="feature-structure">
-                            <div class="structure-layer">API</div>
-                            <div class="structure-layer">Security</div>
-                            <div class="structure-layer">Cloud</div>
-                        </div>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Интеграция</h3>
-                        <p>Беспрепятственная интеграция с существующей инфраструктурой</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Results Content -->
-<div class="content-area" id="results">
-    <div class="content-section">
-        <h2 class="section-title">
-            <span class="section-icon">⭐</span>
-            Наши результаты
-        </h2>
-        
-        <!-- Основная сетка с результатами -->
-        <div class="results-grid">
-            <div class="result-card">
-                <div class="result-image">
-                    <div class="image-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                </div>
-                <div class="result-number">150+</div>
-                <div class="result-description">Реализованных проектов</div>
-                <div class="result-badge">Активно</div>
-            </div>
-            
-            <div class="result-card">
-                <div class="result-image">
-                    <div class="image-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-                <div class="result-number">40%</div>
-                <div class="result-description">Средний ROI</div>
-                <div class="result-badge success">Выше рынка</div>
-            </div>
-            
-            <div class="result-card">
-                <div class="result-image">
-                    <div class="image-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                </div>
-                <div class="result-number">99.9%</div>
-                <div class="result-description">Надежность систем</div>
-                <div class="result-badge premium">Премиум</div>
-            </div>
-            
-            <div class="result-card">
-                <div class="result-image">
-                    <div class="image-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                </div>
-                <div class="result-number">+425%</div>
-                <div class="result-description">Скорость разработки</div>
-                <div class="result-badge warning">Рекорд</div>
-            </div>
-        </div>
-
-        <!-- Дополнительная секция с фотографиями проектов -->
-        <div class="projects-showcase">
-            <h3 class="showcase-title">Наши ключевые проекты</h3>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <span class="project-tag">AI Боты</span>
-                        </div>
-                        <div class="image-content" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-robot"></i>
-                            <div class="project-stats">+300% эффективность</div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Умные ассистенты</h4>
-                        <p>AI-боты для автоматизации бизнес-процессов</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <span class="project-tag">Blockchain</span>
-                        </div>
-                        <div class="image-content" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <i class="fas fa-link"></i>
-                            <div class="project-stats">99.99% uptime</div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Децентрализованные решения</h4>
-                        <p>Blockchain-инфраструктура для бизнеса</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <span class="project-tag">Web3</span>
-                        </div>
-                        <div class="image-content" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <i class="fas fa-globe"></i>
-                            <div class="project-stats">50+ интеграций</div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Web3 платформы</h4>
-                        <p>Инновационные децентрализованные приложения</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <span class="project-tag">Мобильные</span>
-                        </div>
-                        <div class="image-content" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div class="project-stats">1M+ пользователей</div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Мобильные решения</h4>
-                        <p>Кроссплатформенные приложения</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Секция с отзывами клиентов -->
-        <div class="testimonials-section">
-            <h3 class="showcase-title">Отзывы наших клиентов</h3>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="client-avatar">
-                        <div class="avatar-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="client-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"INFO-MARKET помог нам ускорить разработку в 4 раза. Результат превзошел ожидания!"</p>
-                        <div class="client-info">
-                            <strong>Александр К.</strong>
-                            <span>CTO TechCompany</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="client-avatar">
-                        <div class="avatar-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="client-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Надежность 99.9% - это не просто цифры. Наши системы работают без сбоев уже 2 года."</p>
-                        <div class="client-info">
-                            <strong>Мария С.</strong>
-                            <span>CEO FinTech Startup</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Contacts Content -->
-<div class="content-area" id="contacts">
-    <div class="contacts-hero">
-        <div class="contacts-badge">КОНТАКТЫ</div>
-        <h1 class="contacts-title">Давайте создадим <span class="gradient-text">будущее</span> вместе</h1>
-        <p class="contacts-subtitle">Готовы обсудить ваш проект или есть вопросы? Мы на связи!</p>
-    </div>
-
-    <div class="content-section">
-        <div class="contacts-grid">
-            <div class="contact-methods">
-                <div class="contact-card primary">
-                    <div class="contact-icon">
-                        <i class="fab fa-telegram"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Telegram</h3>
-                        <p>Основной канал связи для быстрых консультаций</p>
-                        <div class="contact-details">
-                            <span class="contact-username">@V8R878</span>
-                            <button class="contact-btn" onclick="openTelegram()">
-                                <i class="fas fa-paper-plane"></i>
-                                Написать
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-portfolio"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Портфолио</h3>
-                        <p>Наши лучшие работы и кейсы</p>
-                        <div class="contact-details">
-                            <span class="contact-link">telegra.ph/INFO-MARKET-10-17</span>
-                            <button class="contact-btn" onclick="openPortfolio()">
-                                <i class="fas fa-external-link-alt"></i>
-                                Смотреть
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-broadcast-tower"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Канал</h3>
-                        <p>Актуальные новости и обновления</p>
-                        <div class="contact-details">
-                            <span class="contact-username">@INFOMARKET38</span>
-                            <button class="contact-btn" onclick="openChannel()">
-                                <i class="fas fa-rss"></i>
-                                Подписаться
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form-section">
-                <div class="form-card">
-                    <h3>Быстрая заявка</h3>
-                    <p>Оставьте заявку и мы свяжемся с вами в течение часа</p>
                     
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Имя</label>
-                            <input type="text" id="name" placeholder="Ваше имя" class="form-input">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="contact">Telegram или Email</label>
-                            <input type="text" id="contact" placeholder="@username или email" class="form-input">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="project">О проекте</label>
-                            <textarea id="project" placeholder="Расскажите о вашем проекте..." class="form-textarea" rows="4"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Отправить заявку
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        
-        <div class="team-section">
-            <h2 class="section-title">
-                <span class="section-icon">👥</span>
-                Команда INFO-MARKET
-            </h2>
-            
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">
-                        <div class="avatar-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-code"></i>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Разработчики</h3>
-                        <p>Создаем надежные и масштабируемые решения</p>
-                        <div class="team-skills">
-                            <span class="skill-tag">AI/ML</span>
-                            <span class="skill-tag">Blockchain</span>
-                            <span class="skill-tag">Web3</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card">
-                    <div class="team-avatar">
-                        <div class="avatar-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Аналитики</h3>
-                        <p>Превращаем данные в стратегические решения</p>
-                        <div class="team-skills">
-                            <span class="skill-tag">Analytics</span>
-                            <span class="skill-tag">Data Science</span>
-                            <span class="skill-tag">BI</span>
-                        </div>
+                        <h3>Аналитика и отчетность</h3>
+                        <p>Предоставляем детальную статистику и рекомендации по улучшению</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Process Section -->
+            <div class="process-section-apple">
+                <h2 class="section-title-apple">Как мы работаем</h2>
                 
-                <div class="team-card">
-                    <div class="team-avatar">
-                        <div class="avatar-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <i class="fas fa-headset"></i>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Бесплатная консультация</h3>
+                            <p>Анализируем ваши задачи, подбираем оптимальный тип сайта и составляем ТЗ</p>
                         </div>
                     </div>
-                    <div class="team-info">
-                        <h3>Поддержка</h3>
-                        <p>Обеспечиваем бесперебойную работу 24/7</p>
-                        <div class="team-skills">
-                            <span class="skill-tag">DevOps</span>
-                            <span class="skill-tag">Security</span>
-                            <span class="skill-tag">Cloud</span>
+                    
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Дизайн и разработка</h3>
+                            <p>Создаем адаптивный дизайн и программируем функционал сайта</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Тестирование и запуск</h3>
+                            <p>Проверяем работу на всех устройствах и размещаем на хостинге</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>Обучение и поддержка</h3>
+                            <p>Обучаем работе с сайтом и предоставляем техническую поддержку</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+        <!-- Services Content -->
+        <div class="content-area" id="services">
+            <div class="services-hero">
+                <h1 class="services-title">Наши услуги</h1>
+                <p class="services-subtitle">Профессиональная разработка сайтов с гарантией результата</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Landing Page -->
+                <div class="service-card service-premium">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="service-badge">ХИТ</div>
+                    </div>
+                    <h3 class="service-name">Лендинг пейдж</h3>
+                    <p class="service-description">
+                        Одностраничный сайт для быстрого запуска рекламы и сбора заявок. Идеально подходит для промо-акций, услуг и товаров
+                    </p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Адаптивный дизайн</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Формы захвата лидов</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>SEO-базовая оптимизация</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Интеграция с CRM</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Срок разработки: 3-5 дней</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-pricing">
+                        <div class="price">15 000 ₽</div>
+                        <div class="price-note">экономия 10 000 ₽ от рынка</div>
+                    </div>
+
+                    <!-- Additional Services -->
+                    <div class="additional-options">
+                        <h4>Дополнительные услуги:</h4>
+                        <div class="option-item">
+                            <span class="option-name">Детальная аналитика посещений</span>
+                            <span class="option-price">+3 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Ежемесячные отчеты по эффективности</span>
+                            <span class="option-price">+2 000 ₽/мес</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Рекомендации по улучшению конверсии</span>
+                            <span class="option-price">+5 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Техническая поддержка 24/7</span>
+                            <span class="option-price">+1 500 ₽/мес</span>
+                        </div>
+                    </div>
+                    
+                    <button class="service-btn" onclick="openTelegram()">
+                        <i class="fab fa-telegram"></i>
+                        Заказать лендинг
+                    </button>
+                </div>
+
+                <!-- Corporate Website -->
+                <div class="service-card service-business">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="service-badge">ПОПУЛЯРНО</div>
+                    </div>
+                    <h3 class="service-name">Корпоративный сайт</h3>
+                    <p class="service-description">
+                        Многостраничный сайт для компаний с полной информацией о услугах, команде и контактах. Повышает доверие и привлекает корпоративных клиентов
+                    </p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>5-10 страниц</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Админ-панель управления</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Блог/Новости</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Мультиязычность (опционально)</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Срок разработки: 1-2 недели</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-pricing">
+                        <div class="price">35 000 ₽</div>
+                        <div class="price-note">экономия 15 000 ₽ от рынка</div>
+                    </div>
+
+                    <!-- Additional Services -->
+                    <div class="additional-options">
+                        <h4>Дополнительные услуги:</h4>
+                        <div class="option-item">
+                            <span class="option-name">Расширенная статистика поведения пользователей</span>
+                            <span class="option-price">+5 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Еженедельные отчеты по активности</span>
+                            <span class="option-price">+3 000 ₽/мес</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Анализ воронки продаж и рекомендации</span>
+                            <span class="option-price">+8 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Приоритетная поддержка с аналитикой</span>
+                            <span class="option-price">+3 000 ₽/мес</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Интеграция с 1С/CRM системами</span>
+                            <span class="option-price">+7 000 ₽</span>
+                        </div>
+                    </div>
+                    
+                    <button class="service-btn" onclick="openTelegram()">
+                        <i class="fab fa-telegram"></i>
+                        Заказать корпоративный сайт
+                    </button>
+                </div>
+
+                <!-- Online Store -->
+                <div class="service-card service-enterprise">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="service-badge">ВЫГОДНО</div>
+                    </div>
+                    <h3 class="service-name">Интернет-магазин</h3>
+                    <p class="service-description">
+                        Полнофункциональный магазин с корзиной, оплатой, личным кабинетом и системой управления товарами. Готов к приему онлайн-платежей
+                    </p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Каталог товаров</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Корзина и онлайн-оплата</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Личный кабинет клиента</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Система скидок и акций</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Срок разработки: 2-3 недели</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-pricing">
+                        <div class="price">55 000 ₽</div>
+                        <div class="price-note">экономия 20 000 ₽ от рынка</div>
+                    </div>
+
+                    <!-- Additional Services -->
+                    <div class="additional-options">
+                        <h4>Дополнительные услуги:</h4>
+                        <div class="option-item">
+                            <span class="option-name">Детальная аналитика продаж и поведения</span>
+                            <span class="option-price">+8 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Ежедневные отчеты по ключевым метрикам</span>
+                            <span class="option-price">+5 000 ₽/мес</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Рекомендации по оптимизации воронки продаж</span>
+                            <span class="option-price">+12 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Мониторинг конкурентов и анализ рынка</span>
+                            <span class="option-price">+6 000 ₽/мес</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Интеграция с маркетплейсами</span>
+                            <span class="option-price">+10 000 ₽</span>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Система email-рассылок</span>
+                            <span class="option-price">+7 000 ₽</span>
+                        </div>
+                    </div>
+                    
+                    <button class="service-btn" onclick="openTelegram()">
+                        <i class="fab fa-telegram"></i>
+                        Заказать интернет-магазин
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="additional-services">
+                <h2 class="section-title-apple">Дополнительные услуги</h2>
+                
+                <div class="addons-grid">
+                    <div class="addon-card">
+                        <div class="addon-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Детальная аналитика</h4>
+                        <p>Полная статистика по посетителям, поведению и конверсиям</p>
+                        <div class="addon-price">от 3 000 ₽</div>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>Регулярные отчеты</h4>
+                        <p>Еженедельные/ежемесячные отчеты по эффективности сайта</p>
+                        <div class="addon-price">от 2 000 ₽/мес</div>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Рекомендации по улучшению</h4>
+                        <p>Профессиональные советы по повышению конверсии</p>
+                        <div class="addon-price">от 5 000 ₽</div>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Техническая поддержка</h4>
+                        <p>Оперативное решение технических вопросов</p>
+                        <div class="addon-price">от 1 500 ₽/мес</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section-apple">
+                <h2>Готовы запустить сайт?</h2>
+                <p>Получите бесплатную консультацию и расчет стоимости за 15 минут</p>
+                <div class="cta-actions">
+                    <button class="btn-apple-primary" onclick="openTelegram()">
+                        <i class="fab fa-telegram"></i>
+                        Написать в Telegram
+                    </button>
+                    <button class="btn-apple-secondary" onclick="showSection('contacts')">
+                        <i class="fas fa-envelope"></i>
+                        Другие контакты
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cases Content -->
+        <div class="content-area" id="cases">
+            <div class="cases-hero">
+                <h1 class="cases-title">Наши кейсы</h1>
+                <p class="cases-subtitle">Реальные проекты, которые приносят результат нашим клиентам</p>
+            </div>
+
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="case-badge">ЛЕНДИНГ</div>
+                        <div class="image-content" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <h3>Лендинг для студии дизайна</h3>
+                        <p class="case-description">
+                            Продающий лендинг для дизайн-студии. За 2 месяца привлек 45 новых клиентов через контекстную рекламу
+                        </p>
+                        <div class="case-results">
+                            <div class="result">
+                                <div class="result-value">45</div>
+                                <div class="result-label">новых клиентов</div>
+                            </div>
+                            <div class="result">
+                                <div class="result-value">12%</div>
+                                <div class="result-label">конверсия</div>
+                            </div>
+                        </div>
+                        <div class="case-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">PHP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="case-badge">КОРПОРАТИВНЫЙ</div>
+                        <div class="image-content" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <h3>Сайт для строительной компании</h3>
+                        <p class="case-description">
+                            Корпоративный портал с каталогом услуг, портфолио и системой заявок. Увеличил количество обращений на 65%
+                        </p>
+                        <div class="case-results">
+                            <div class="result">
+                                <div class="result-value">+65%</div>
+                                <div class="result-label">рост заявок</div>
+                            </div>
+                            <div class="result">
+                                <div class="result-value">2.8с</div>
+                                <div class="result-label">скорость загрузки</div>
+                            </div>
+                        </div>
+                        <div class="case-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="case-badge">МАГАЗИН</div>
+                        <div class="image-content" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <h3>Интернет-магазин косметики</h3>
+                        <p class="case-description">
+                            Полнофункциональный магазин с онлайн-оплатой и системой лояльности. Окупился за первый месяц работы
+                        </p>
+                        <div class="case-results">
+                            <div class="result">
+                                <div class="result-value">280K</div>
+                                <div class="result-label">выручка в первый месяц</div>
+                            </div>
+                            <div class="result">
+                                <div class="result-value">8.5%</div>
+                                <div class="result-label">конверсия в покупку</div>
+                            </div>
+                        </div>
+                        <div class="case-tech">
+                            <span class="tech-tag">WooCommerce</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonials-section-apple">
+                <h2 class="section-title-apple">Отзывы клиентов</h2>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Заказывали лендинг для нашей студии. Сделали быстро, качественно, учли все пожелания. За 2 месяца получили 45 новых клиентов - результат превзошел ожидания!"
+                            </p>
+                            <div class="client-info">
+                                <div class="client-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="client-details">
+                                    <div class="client-name">Анна Ковалева</div>
+                                    <div class="client-company">Владелец, DesignStudio</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Разрабатывали корпоративный сайт для строительной компании. Профессиональный подход, четкие сроки, отличный результат. Количество заявок выросло на 65%!"
+                            </p>
+                            <div class="client-info">
+                                <div class="client-avatar">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="client-details">
+                                    <div class="client-name">Дмитрий Смирнов</div>
+                                    <div class="client-company">Директор, BuildCorp</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts Content -->
+        <div class="content-area" id="contacts">
+            <div class="contacts-hero">
+                <h1 class="contacts-title">Свяжитесь с нами</h1>
+                <p class="contacts-subtitle">Готовы обсудить ваш проект? Выберите удобный способ связи</p>
+            </div>
+
+            <div class="contacts-grid">
+                <div class="contact-methods">
+                    <!-- Telegram -->
+                    <div class="contact-card contact-primary">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Telegram</h3>
+                            <p class="contact-description">
+                                Основной канал для быстрых консультаций и обсуждения проектов. Отвечаем в течение 15 минут
+                            </p>
+                            <div class="contact-details">
+                                <span class="contact-username">@V8R878</span>
+                                <button class="contact-btn" onclick="openTelegram()">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Написать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Портфолио</h3>
+                            <p class="contact-description">
+                                Посмотрите наши лучшие работы и кейсы с подробным описанием технологий и результатов
+                            </p>
+                            <div class="contact-details">
+                                <span class="contact-link">telegra.ph/INFO-MARKET-10-17</span>
+                                <button class="contact-btn" onclick="openPortfolio()">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Смотреть
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Channel -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Канал с новостями</h3>
+                            <p class="contact-description">
+                                Будьте в курсе новых технологий, кейсов и специальных предложений
+                            </p>
+                            <div class="contact-details">
+                                <span class="contact-username">@INFOMARKET38</span>
+                                <button class="contact-btn" onclick="openChannel()">
+                                    <i class="fas fa-rss"></i>
+                                    Подписаться
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Form -->
+                <div class="contact-form-section">
+                    <div class="form-card">
+                        <h3>Быстрая заявка</h3>
+                        <p>Оставьте контакты и мы свяжемся с вами в течение часа</p>
+                        
+                        <form class="contact-form" onsubmit="submitForm(event)">
+                            <div class="form-group">
+                                <label for="name">Ваше имя</label>
+                                <input type="text" id="name" placeholder="Как к вам обращаться?" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact">Telegram или Email</label>
+                                <input type="text" id="contact" placeholder="@username или email" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project">О проекте</label>
+                                <textarea id="project" placeholder="Расскажите кратко о вашем проекте..." class="form-textarea" rows="4"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                Отправить заявку
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 class="section-title-apple">Частые вопросы</h2>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>Сколько времени занимает разработка?</h4>
+                        <p>Лендинг - 3-5 дней, корпоративный сайт - 1-2 недели, интернет-магазин - 2-3 недели. Сроки зависят от сложности проекта.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>Какие гарантии вы предоставляете?</h4>
+                        <p>Гарантия на код 6 месяцев, бесплатная техническая поддержка 1 месяц, гарантия возврата при несоответствии ТЗ.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>Можно ли вносить правки в процессе?</h4>
+                        <p>Да, мы работаем по agile-методологии и регулярно согласовываем промежуточные результаты. Правки в рамках ТЗ бесплатны.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>Вы занимаетесь дальнейшей поддержкой?</h4>
+                        <p>Да, предоставляем услуги хостинга, технической поддержки, аналитики и дальнейшего развития проектов.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Home Indicator -->
         <div class="home-indicator">
             <div class="home-line"></div>
         </div>
     </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-area').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update dock apps
+            document.querySelectorAll('.dock-app').forEach(app => {
+                app.classList.remove('active');
+                if (app.getAttribute('data-target') === sectionId) {
+                    app.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openTelegram() {
+            window.open('https://t.me/V8R878', '_blank');
+        }
+
+        function openPortfolio() {
+            window.open('https://telegra.ph/INFO-MARKET-10-17', '_blank');
+        }
+
+        function openChannel() {
+            window.open('https://t.me/INFOMARKET38', '_blank');
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            alert('Спасибо! Мы свяжемся с вами в течение часа.');
+            event.target.reset();
+        }
+
+        // Initialize first section
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
+    </script>
 </body>
 </html>
