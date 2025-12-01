@@ -464,52 +464,191 @@ body {
     align-items: center;
     justify-content: center;
 }
+/* ===== APPLE APP ICONS STYLE ===== */
 
 .floating-card {
     position: absolute;
-    background: var(--card-bg-light);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--gray-border);
+    width: 80px;
+    height: 80px;
     border-radius: 20px;
-    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    width: 120px;
-    transition: all 0.3s ease;
-    animation: float 3s ease-in-out infinite;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: none; /* убираем float анимацию */
+    padding: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
 }
 
+/* Эффект приложения Apple */
+.floating-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0) 60%);
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/* Текст под иконкой */
+.floating-card::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--light);
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 4px 8px;
+    border-radius: 6px;
+    z-index: 3;
+}
+
+/* Иконка внутри */
 .floating-card i {
     font-size: 2rem;
+    color: white;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 }
 
+/* Убираем старый текст */
 .floating-card span {
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-align: center;
+    display: none;
 }
 
-.card-ai {
+/* Позиционирование иконок в треугольнике */
+.card-landing {
     top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-    background: var(--gradient-purple);
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #007AFF 0%, #0056CC 50%, #0047AB 100%);
+    box-shadow: 
+        0 10px 30px rgba(0, 122, 255, 0.25),
+        0 6px 10px rgba(0, 122, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.card-corporate {
+    top: 60%;
+    right: 20%;
+    background: linear-gradient(135deg, #34C759 0%, #28A745 50%, #1E7E34 100%);
+    box-shadow: 
+        0 10px 30px rgba(52, 199, 89, 0.25),
+        0 6px 10px rgba(52, 199, 89, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.card-shop {
+    top: 60%;
+    left: 20%;
+    background: linear-gradient(135deg, #FF9500 0%, #FF7B00 50%, #FF6000 100%);
+    box-shadow: 
+        0 10px 30px rgba(255, 149, 0, 0.25),
+        0 6px 10px rgba(255, 149, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Эффект наведения как в iOS */
+.floating-card:hover {
+    transform: scale(1.15) translateY(-5px);
+}
+
+.floating-card:hover::after {
+    opacity: 1;
+    bottom: -20px;
+}
+
+.floating-card:hover i {
+    transform: scale(1.1);
+}
+
+/* Анимация появления */
+@keyframes appIconAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.card-landing {
+    animation: appIconAppear 0.6s ease-out 0.2s both;
+}
+
+.card-corporate {
+    animation: appIconAppear 0.6s ease-out 0.4s both;
+}
+
+.card-shop {
+    animation: appIconAppear 0.6s ease-out 0.6s both;
+}
+
+/* Эффект нажатия */
+.floating-card:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Для AI, Web, App карточек тоже делаем стиль иконок */
+.card-ai {
+    background: linear-gradient(135deg, #AF52DE 0%, #9B30D6 50%, #8A2BE2 100%);
+    box-shadow: 
+        0 10px 30px rgba(175, 82, 222, 0.25),
+        0 6px 10px rgba(175, 82, 222, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .card-web {
-    top: 50%;
-    right: 20%;
-    animation-delay: 1s;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #007AFF 0%, #0056CC 50%, #0047AB 100%);
+    box-shadow: 
+        0 10px 30px rgba(0, 122, 255, 0.25),
+        0 6px 10px rgba(0, 122, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .card-app {
-    bottom: 20%;
-    left: 25%;
-    animation-delay: 2s;
-    background: var(--gradient-orange);
+    background: linear-gradient(135deg, #FF9500 0%, #FF7B00 50%, #FF6000 100%);
+    box-shadow: 
+        0 10px 30px rgba(255, 149, 0, 0.25),
+        0 6px 10px rgba(255, 149, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.card-link {
+    position: absolute;
+    text-decoration: none;
+    display: block;
+}
+
+.card-link:nth-child(1) {
+    top: 15%;
+    left: 40%;
+}
+
+.card-link:nth-child(2) {
+    top: 60%;
+    right: 15%;
+}
+
+.card-link:nth-child(3) {
+    top: 60%;
+    left: 15%;
 }
 /* Additional Options in Service Cards */
 .additional-options {
@@ -555,22 +694,22 @@ body {
 
 /* Updated floating cards for websites */
 .card-landing {
-    top: 20%;
-    left: 10%;
+    top: 15%;
+    left: 40%;
     animation-delay: 0s;
     background: var(--gradient-primary);
 }
 
 .card-corporate {
-    top: 50%;
-    right: 20%;
+    top: 60%;
+    right: 15%;
     animation-delay: 1s;
     background: var(--gradient-success);
 }
 
 .card-shop {
-    bottom: 20%;
-    left: 25%;
+    top: 60%;
+    left: 15%;
     animation-delay: 2s;
     background: var(--gradient-orange);
 }
