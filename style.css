@@ -164,27 +164,40 @@ body {
     margin-right: auto;
 }
 
-
-
-/* ===== DOCK NAVIGATION WITH IMAGES ===== */
+/* ===== MODERN iOS DOCK NAVIGATION ===== */
 .dock {
-    background: var(--blur-bg);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border-radius: 24px;
-    padding: 1rem 1.5rem;
-    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 28px;
+    padding: 1.2rem 2rem;
+    margin: 0 auto 3rem auto;
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    border: 1px solid var(--gray-border);
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    gap: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: visible;
+    min-width: auto;
+    max-width: fit-content;
 }
 
-.dock::-webkit-scrollbar {
-    display: none;
+/* Док эффект с градиентными краями */
+.dock::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0.02), 
+        rgba(255, 255, 255, 0.1));
+    border-radius: 29px;
+    z-index: -1;
+    opacity: 0.6;
 }
 
 .dock-app {
@@ -192,89 +205,124 @@ body {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 0.8rem 1rem;
-    border-radius: 16px;
-    min-width: 70px;
+    border-radius: 20px;
+    min-width: 80px;
     position: relative;
+    z-index: 1;
 }
 
+/* Эффект наведения как в iOS */
 .dock-app:hover {
-    transform: scale(1.1);
-    background: var(--card-bg-light);
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .dock-app.active {
-    background: var(--card-bg-light);
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-4px);
 }
 
+/* Индикатор активного элемента */
 .dock-app.active::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    width: 4px;
-    height: 4px;
+    bottom: -12px;
+    width: 5px;
+    height: 5px;
     background: var(--primary);
     border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+    animation: pulse 2s infinite;
 }
 
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* Контейнер для иконок */
 .app-icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(201, 199, 199);
-    border-radius: 14px;
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     position: relative;
-
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* FIXED STYLES FOR IMAGES */
+/* Эффект свечения для активной иконки */
+.dock-app.active .app-icon {
+    background: var(--gradient-primary);
+    box-shadow: 
+        0 10px 25px rgba(0, 123, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Стили для изображений иконок */
 .app-icon img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
-    transition: all 0.3s ease;
-    filter: brightness(0.8);
-    display: block; /* Важно! */
-    opacity: 1; /* Важно! */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: brightness(0.95) contrast(1.1);
+    display: block;
+    opacity: 0.9;
+}
+
+/* Эффект наведения для иконок */
+.dock-app:hover .app-icon {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.15);
 }
 
 .dock-app:hover .app-icon img {
-    transform: scale(1.1);
-    filter: brightness(1);
+    transform: scale(1.2);
+    filter: brightness(1.2) contrast(1.2);
+    opacity: 1;
 }
 
-.dock-app.active .app-icon {
-    background: var(--gradient-primary);
-}
-
+/* Активная иконка */
 .dock-app.active .app-icon img {
     filter: brightness(0) invert(1);
-    transform: scale(1.1);
+    transform: scale(1.15);
+    opacity: 1;
 }
 
+/* Название приложения */
 .app-name {
-    font-size: 0.75rem;
-    color: var(--gray);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     transition: all 0.3s ease;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
 }
 
+/* Состояния названия */
 .dock-app.active .app-name {
-    color: var(--light);
+    color: white;
     font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .dock-app:hover .app-name {
-    color: var(--light);
+    color: white;
+    transform: translateY(2px);
 }
 
-/* Enhanced hover effects */
+/* Фоновая анимация при наведении */
 .dock-app::before {
     content: '';
     position: absolute;
@@ -282,30 +330,48 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 16px;
+    border-radius: 20px;
     background: var(--gradient-primary);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
     z-index: -1;
 }
 
 .dock-app:hover::before {
-    opacity: 0.1;
-}
-
-.dock-app.active::before {
     opacity: 0.15;
 }
 
-/* Icon animations */
+.dock-app.active::before {
+    opacity: 0.2;
+}
+
+/* Анимации для иконок */
 @keyframes iconBounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+    0%, 100% { 
+        transform: scale(1); 
+    }
+    50% { 
+        transform: scale(1.25); 
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-5px); 
+    }
 }
 
 .dock-app.active .app-icon img {
     animation: iconBounce 0.6s ease;
 }
+
+.dock-app:hover .app-icon {
+    animation: float 2s ease-in-out infinite;
+}
+
 
 /* ===== BUTTONS ===== */
 .btn-apple-primary {
@@ -1593,23 +1659,6 @@ body {
         padding: 1rem;
     }
     
-    .dock {
-        padding: 0.8rem 1rem;
-        gap: 1rem;
-        justify-content: center;
-    }
-    
-    .dock-app {
-        min-width: 60px;
-        padding: 0.6rem 0.8rem;
-    }
-    
-    .app-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.3rem;
-    }
-    
     .hero-title-apple {
         font-size: 2.5rem;
     }
@@ -1688,25 +1737,31 @@ body {
     .case-photo i {
         font-size: 2.5rem;
     }
-    
-    .dock-app {
-        min-width: 60px;
-        padding: 0.6rem 0.8rem;
-    }
-    
-    .app-icon {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .app-icon img {
-        width: 20px;
-        height: 20px;
-    }
-    
     .app-name {
         font-size: 0.7rem;
         margin-top: 0.4rem;
+    }
+    .dock {
+        gap: 1.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 24px;
+        width: calc(100% - 2rem);
+        margin: 0 1rem 2rem 1rem;
+        justify-content: center;
+    }
+    
+    .dock-app {
+        min-width: 70px;
+    }
+    
+    .app-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .app-icon img {
+        width: 28px;
+        height: 28px;
     }
 }
 
@@ -1766,15 +1821,6 @@ body {
     .faq-grid {
         grid-template-columns: 1fr;
     }
-    .dock {
-        padding: 0.6rem 0.8rem;
-        gap: 0.8rem;
-    }
-    
-    .dock-app {
-        min-width: 55px;
-        padding: 0.5rem 0.6rem;
-    }
     
     .app-icon {
         width: 36px;
@@ -1785,9 +1831,18 @@ body {
         width: 18px;
         height: 18px;
     }
+    .dock {
+        gap: 1rem;
+        padding: 0.8rem 1rem;
+    }
+    
+    .dock-app {
+        min-width: 60px;
+        padding: 0.6rem 0.8rem;
+    }
     
     .app-name {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
     }
 }
 
