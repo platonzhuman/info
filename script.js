@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация всех модулей
     initTime();
     initDockApps();
+    initHeroVisualClicks();
     initNotifications();
     initBackToTopButtons();
     initScrollAnimations();
     initButtonHandlers();
+    initServiceNavigation();
 });
 
 // ==================== ВРЕМЯ ====================
@@ -39,35 +41,95 @@ function initDockApps() {
     dockApps.forEach(app => {
         app.addEventListener('click', function() {
             const target = this.getAttribute('data-target');
-            
-            // Обновляем активное состояние
-            dockApps.forEach(a => a.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Показываем соответствующий контент
-            document.querySelectorAll('.content-area').forEach(area => {
-                area.classList.remove('active');
-            });
-            
-            const targetSection = document.getElementById(target);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                
-                // Плавная прокрутка к верху
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // УБИРАЕМ переинициализацию анимаций при переключении секций
-                // setTimeout(refreshAnimations, 300); // ЗАКОММЕНТИРУЙ ЭТУ СТРОКУ
-            }
+            showSection(target);
         });
     });
     
     // Активируем домашнюю секцию по умолчанию
-    const homeApp = document.querySelector('.dock-app[data-target="home"]');
-    if (homeApp) {
-        homeApp.click();
+    showSection('home');
+}
+
+// ==================== НАВИГАЦИЯ К УСЛУГАМ ====================
+function initHeroVisualClicks() {
+    document.querySelectorAll('.card-link').forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceType = this.getAttribute('data-service');
+            navigateToService(serviceType);
+        });
+    });
+}
+
+function navigateToService(serviceId) {
+    // Показываем секцию услуг
+    showSection('services');
+    
+    // После небольшой задержки скроллим к нужной карточке
+    setTimeout(() => {
+        const targetCard = document.getElementById(serviceId);
+        if (targetCard) {
+            // Прокручиваем к карточке
+            targetCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Подсвечиваем карточку
+            highlightCard(targetCard);
+        }
+    }, 100);
+}
+
+function highlightCard(card) {
+    const originalBoxShadow = card.style.boxShadow;
+    const originalBorderColor = card.style.borderColor;
+    
+    // Добавляем подсветку
+    card.style.boxShadow = '0 0 0 3px rgba(0, 122, 255, 0.5), 0 10px 25px rgba(0, 122, 255, 0.3)';
+    card.style.borderColor = 'var(--primary)';
+    
+    // Убираем подсветку через 3 секунды
+    setTimeout(() => {
+        card.style.boxShadow = originalBoxShadow;
+        card.style.borderColor = originalBorderColor;
+    }, 3000);
+}
+
+function showSection(sectionId) {
+    // Скрываем все секции
+    document.querySelectorAll('.content-area').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Показываем нужную секцию
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // Обновляем активное состояние в доке
+        document.querySelectorAll('.dock-app').forEach(app => {
+            app.classList.remove('active');
+            if (app.getAttribute('data-target') === sectionId) {
+                app.classList.add('active');
+            }
+        });
+        
+        // Скроллим вверх только если это не переход к конкретной услуге
+        if (!['lending', 'korp', 'magazin'].includes(sectionId)) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 }
+
+function initServiceNavigation() {
+    // Если страница загрузилась с якорем #lending, #korp или #magazin
+    const hash = window.location.hash.substring(1);
+    if (hash && ['lending', 'korp', 'magazin'].includes(hash)) {
+        setTimeout(() => {
+            navigateToService(hash);
+        }, 500);
+    }
+}
+
 // ==================== УВЕДОМЛЕНИЯ ====================
 function showNotification(message) {
     const notification = document.createElement('div');
@@ -94,7 +156,6 @@ function showNotification(message) {
 }
 
 function initNotifications() {
-    // Добавляем CSS для анимации уведомлений
     const style = document.createElement('style');
     style.textContent = `
         @keyframes slideIn {
@@ -114,17 +175,14 @@ function initBackToTopButtons() {
 }
 
 function createMainButton() {
-    // Проверяем, не создана ли уже кнопка
     if (document.querySelector('.back-to-top')) return;
     
-    // Создаем элемент кнопки
     backToTopBtn = document.createElement('button');
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
     backToTopBtn.setAttribute('aria-label', 'Вернуться наверх');
     backToTopBtn.setAttribute('title', 'Наверх');
     
-    // Добавляем стили для кнопки
     const styles = `
         .back-to-top {
             position: fixed;
@@ -184,7 +242,6 @@ function createMainButton() {
             margin-right: 0.5rem;
         }
         
-        /* Скрываем кнопки в секциях на мобильных */
         @media (max-width: 768px) {
             .section-back-btn {
                 display: none !important;
@@ -202,26 +259,19 @@ function createMainButton() {
     styleSheet.textContent = styles;
     document.head.appendChild(styleSheet);
     
-    // Добавляем кнопку в body
     document.body.appendChild(backToTopBtn);
-    
-    // Обработчики событий
     backToTopBtn.addEventListener('click', scrollToTop);
     window.addEventListener('scroll', toggleBackToTopVisibility);
-    
-    // Инициализация при загрузке
     toggleBackToTopVisibility();
 }
 
 function setupSectionButtons() {
-    // Ждем полной загрузки DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', addSectionButtons);
     } else {
         setTimeout(addSectionButtons, 1000);
     }
     
-    // Также добавляем кнопки при изменении размера окна
     window.addEventListener('resize', function() {
         setTimeout(addSectionButtons, 500);
     });
@@ -231,11 +281,9 @@ function addSectionButtons() {
     const sections = document.querySelectorAll('.content-section');
     const isMobile = window.innerWidth <= 768;
     
-    // На мобильных не создаем кнопки в секциях
     if (isMobile) return;
     
     sections.forEach(section => {
-        // Проверяем, нужна ли кнопка в этой секции и не создана ли уже
         if (section.scrollHeight > window.innerHeight * 1.5 && 
             !section.querySelector('.section-back-btn')) {
             
@@ -244,9 +292,8 @@ function addSectionButtons() {
             backBtn.innerHTML = '<i class="fas fa-arrow-up"></i> Наверх';
             backBtn.setAttribute('aria-label', 'Вернуться к началу секции');
             
-            // Добавляем обработчик для плавной прокрутки к началу секции
             backBtn.addEventListener('click', () => {
-                const sectionTop = section.offsetTop - 80; // Учитываем высоту статус-бара
+                const sectionTop = section.offsetTop - 80;
                 window.scrollTo({
                     top: sectionTop,
                     behavior: 'smooth'
@@ -325,7 +372,6 @@ function setupAnimationObserver() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    // Начинаем наблюдать за всеми анимированными элементами
     setTimeout(() => {
         const animatedElements = document.querySelectorAll('[class*="fade-"], [class*="scale-"]');
         animatedElements.forEach(el => {
@@ -335,18 +381,15 @@ function setupAnimationObserver() {
 }
 
 function addAnimationClasses() {
-    // Секции и заголовки
     const sections = document.querySelectorAll('.content-section');
     const sectionTitles = document.querySelectorAll('.section-title');
     const heroSection = document.querySelector('.hero-section');
     
-    // Карточки
     const missionCards = document.querySelectorAll('.mission-card');
     const resultCards = document.querySelectorAll('.result-card');
     const projectCards = document.querySelectorAll('.project-card');
     const dockApps = document.querySelectorAll('.dock-app');
 
-    // Применяем анимации к элементам
     sections.forEach(section => {
         section.classList.add('fade-in-up');
     });
@@ -359,7 +402,6 @@ function addAnimationClasses() {
         heroSection.classList.add('scale-in');
     }
 
-    // Анимация карточек с разными направлениями
     missionCards.forEach((card, index) => {
         const animationType = index % 3 === 0 ? 'fade-in-left' : 
                             index % 3 === 1 ? 'fade-in-right' : 'fade-in-up';
@@ -375,7 +417,6 @@ function addAnimationClasses() {
         card.classList.add(animationType, `stagger-delay-${(index % 5) + 1}`);
     });
 
-    // Анимация док-приложений
     dockApps.forEach((app, index) => {
         app.classList.add('scale-in', `stagger-delay-${(index % 6) + 1}`);
     });
@@ -396,7 +437,6 @@ function initHoverAnimations() {
 }
 
 function refreshAnimations() {
-    // Переинициализация анимаций
     document.querySelectorAll('.animated').forEach(el => {
         el.classList.remove('animated');
     });
@@ -407,7 +447,6 @@ function refreshAnimations() {
     }, 100);
 }
 
-// Слушаем событие смены контента
 document.addEventListener('contentChanged', refreshAnimations);
 
 // ==================== ОБРАБОТЧИКИ КНОПОК ====================
@@ -422,8 +461,33 @@ function initButtonHandlers() {
     });
 }
 
+// ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
+function openTelegram() {
+    window.open('https://t.me/V8R878', '_blank');
+}
+
+function openPortfolio() {
+    window.open('https://telegra.ph/INFO-MARKET-10-17', '_blank');
+}
+
+function openChannel() {
+    window.open('https://t.me/INFOMARKET38', '_blank');
+}
+
+function submitForm(event) {
+    event.preventDefault();
+    alert('Спасибо! Мы свяжемся с вами в течение часа.');
+    event.target.reset();
+}
+
 // ==================== ГЛОБАЛЬНЫЕ ФУНКЦИИ ====================
 window.App = {
+    showSection: showSection,
+    navigateToService: navigateToService,
+    openTelegram: openTelegram,
+    openPortfolio: openPortfolio,
+    openChannel: openChannel,
+    submitForm: submitForm,
     refreshAnimations: refreshAnimations,
     showNotification: showNotification
 };

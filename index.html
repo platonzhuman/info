@@ -66,17 +66,17 @@
                     </div>
                 </div>
 <div class="hero-visual">
-    <div onclick="showSection('services')" class="card-link" data-name="Лендинги">
+    <div class="card-link" data-service="lending" data-name="Лендинги">
         <div class="floating-card card-landing">
             <i class="fas fa-rocket"></i>
         </div>
     </div>
-    <div onclick="showSection('services')" class="card-link" data-name="Компания">
+    <div class="card-link" data-service="korp" data-name="Компания">
         <div class="floating-card card-corporate">
             <i class="fas fa-building"></i>
         </div>
     </div>
-    <div onclick="showSection('services')" class="card-link" data-name="Магазины">
+    <div class="card-link" data-service="magazin" data-name="Магазины">
         <div class="floating-card card-shop">
             <i class="fas fa-shopping-cart"></i>
         </div>
@@ -187,7 +187,7 @@
 
             <div class="services-grid">
                 <!-- Landing Page -->
-                <div class="service-card service-premium">
+                <div class="service-card service-premium" id="lending">
                     <div class="service-header">
                         <div class="service-icon">
                             <i class="fas fa-rocket"></i>
@@ -255,7 +255,7 @@
                 </div>
 
                 <!-- Corporate Website -->
-                <div class="service-card service-business">
+                <div class="service-card service-business" id="korp">
                     <div class="service-header">
                         <div class="service-icon">
                             <i class="fas fa-building"></i>
@@ -327,7 +327,7 @@
                 </div>
 
                 <!-- Online Store -->
-                <div class="service-card service-enterprise">
+                <div class="service-card service-enterprise" id="magazin">
                     <div class="service-header">
                         <div class="service-icon">
                             <i class="fas fa-shopping-cart"></i>
@@ -363,7 +363,7 @@
                     </div>
                     
                     <div class="service-pricing">
-                        <div class="price">55 000 ₽</div>
+                        <div class="price">95 000 ₽</div>
                         <div class="price-note">экономия 20 000 ₽ от рынка</div>
                     </div>
 

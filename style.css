@@ -164,7 +164,7 @@ body {
     margin-right: auto;
 }
 
-/* ===== MODERN iOS DOCK NAVIGATION ===== */
+/* ===== FIXED DOCK NAVIGATION (NO JUMPING) ===== */
 .dock {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(40px) saturate(200%);
@@ -205,7 +205,7 @@ body {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     padding: 0.8rem 1rem;
     border-radius: 20px;
     min-width: 80px;
@@ -213,15 +213,13 @@ body {
     z-index: 1;
 }
 
-/* Эффект наведения как в iOS */
+/* Эффект наведения без прыжков */
 .dock-app:hover {
-    transform: translateY(-8px) scale(1.05);
     background: rgba(255, 255, 255, 0.15);
 }
 
 .dock-app.active {
     background: rgba(255, 255, 255, 0.18);
-    transform: translateY(-4px);
 }
 
 /* Индикатор активного элемента */
@@ -234,12 +232,6 @@ body {
     background: var(--primary);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--primary);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.1); }
 }
 
 /* Контейнер для иконок */
@@ -251,7 +243,7 @@ body {
     justify-content: center;
     background: rgba(255, 255, 255, 0.12);
     border-radius: 18px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     overflow: hidden;
     position: relative;
     backdrop-filter: blur(10px);
@@ -265,7 +257,6 @@ body {
     box-shadow: 
         0 10px 25px rgba(0, 123, 255, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
 }
 
 /* Стили для изображений иконок */
@@ -273,20 +264,18 @@ body {
     width: 32px;
     height: 32px;
     object-fit: contain;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     filter: brightness(0.95) contrast(1.1);
     display: block;
     opacity: 0.9;
 }
 
-/* Эффект наведения для иконок */
+/* Эффект наведения для иконок без скачков */
 .dock-app:hover .app-icon {
     background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.15);
 }
 
 .dock-app:hover .app-icon img {
-    transform: scale(1.2);
     filter: brightness(1.2) contrast(1.2);
     opacity: 1;
 }
@@ -294,7 +283,6 @@ body {
 /* Активная иконка */
 .dock-app.active .app-icon img {
     filter: brightness(0) invert(1);
-    transform: scale(1.15);
     opacity: 1;
 }
 
@@ -319,7 +307,6 @@ body {
 
 .dock-app:hover .app-name {
     color: white;
-    transform: translateY(2px);
 }
 
 /* Фоновая анимация при наведении */
@@ -344,35 +331,6 @@ body {
 .dock-app.active::before {
     opacity: 0.2;
 }
-
-/* Анимации для иконок */
-@keyframes iconBounce {
-    0%, 100% { 
-        transform: scale(1); 
-    }
-    50% { 
-        transform: scale(1.25); 
-    }
-}
-
-@keyframes float {
-    0%, 100% { 
-        transform: translateY(0px); 
-    }
-    50% { 
-        transform: translateY(-5px); 
-    }
-}
-
-.dock-app.active .app-icon img {
-    animation: iconBounce 0.6s ease;
-}
-
-.dock-app:hover .app-icon {
-    animation: float 2s ease-in-out infinite;
-}
-
-
 /* ===== BUTTONS ===== */
 .btn-apple-primary {
     background: var(--gradient-primary);
