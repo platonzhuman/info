@@ -1468,6 +1468,18 @@ body {
     color: var(--gray);
     font-size: 0.9rem;
 }
+.case-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
 
 /* ===== CONTACTS SECTION ===== */
 .contacts-hero {
