@@ -37,14 +37,6 @@ function initSmoothScroll() {
             class: 'is-inview',
             inertia: 0.7,
             getDirection: true,
-            smartphone: {
-                smooth: false,  // Отключаем на смартфонах
-                breakpoint: 768
-            },
-            tablet: {
-                smooth: false,  // Отключаем на планшетах
-                breakpoint: 768
-            }
         });
         
         console.log('Locomotive Scroll инициализирован');
