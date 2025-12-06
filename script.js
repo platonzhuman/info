@@ -1,12 +1,5 @@
-let locomotiveScroll;
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Приложение инициализировано');
-    
-    // Инициализируем скролл только на устройствах шириной 768px и больше
-    if (window.innerWidth >= 768) {
-        initSmoothScroll();
-    }
     
     initThemeToggle();
     initTime();
@@ -18,47 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initButtonHandlers();
     initServiceNavigation();
 });
-
-// ==================== ЛОКОМОТИВ СКРОЛЛ ====================
-function initSmoothScroll() {
-    setTimeout(() => {
-        const scrollContainer = document.querySelector('.main-container');
-        if (!scrollContainer) {
-            console.error('Не найден .main-container');
-            return;
-        }
-        
-        scrollContainer.setAttribute('data-scroll-container', '');
-        
-        locomotiveScroll = new LocomotiveScroll({
-            el: scrollContainer,
-            smooth: true,
-            multiplier: 1.3,
-            class: 'is-inview',
-            inertia: 0.7,
-            getDirection: true,
-        });
-        
-        console.log('Locomotive Scroll инициализирован');
-        
-        window.addEventListener('load', function() {
-            if (locomotiveScroll) locomotiveScroll.update();
-        });
-        
-        window.addEventListener('resize', function() {
-            if (locomotiveScroll) locomotiveScroll.update();
-        });
-        
-    }, 100);
-}
-
-function updateScroll() {
-    if (locomotiveScroll) {
-        setTimeout(() => {
-            locomotiveScroll.update();
-        }, 50);
-    }
-}
 
 // ==================== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ====================
 function initThemeToggle() {
@@ -98,8 +50,6 @@ function initThemeToggle() {
             themeIcon.classList.add('fa-moon');
             localStorage.setItem('theme', 'dark');
         }
-        
-        updateScroll();
     });
 }
 
@@ -154,22 +104,13 @@ function navigateToService(serviceId) {
     setTimeout(() => {
         const targetCard = document.getElementById(serviceId);
         if (targetCard) {
-            if (locomotiveScroll) {
-                locomotiveScroll.scrollTo(targetCard, {
-                    offset: -80,
-                    duration: 800
-                });
-            } else {
-                targetCard.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+            targetCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
             
             highlightCard(targetCard);
         }
-        
-        updateScroll();
     }, 300);
 }
 
@@ -202,8 +143,6 @@ function showSection(sectionId) {
                 app.classList.add('active');
             }
         });
-        
-        updateScroll();
     }
 }
 
@@ -312,18 +251,10 @@ function createMainButton() {
     document.body.appendChild(backToTopBtn);
     
     backToTopBtn.addEventListener('click', function() {
-        if (locomotiveScroll) {
-            locomotiveScroll.scrollTo(0, {
-                duration: 1000,
-                easing: [0.25, 0.1, 0.25, 1],
-                disableLerp: false
-            });
-        } else {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
     
     window.addEventListener('scroll', toggleBackToTopVisibility);
@@ -331,18 +262,10 @@ function createMainButton() {
 }
 
 function scrollToTop() {
-    if (locomotiveScroll) {
-        locomotiveScroll.scrollTo(0, {
-            duration: 1000,
-            easing: [0.25, 0.1, 0.25, 1],
-            disableLerp: false
-        });
-    } else {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
 function toggleBackToTopVisibility() {
@@ -523,8 +446,7 @@ window.App = {
     openChannel: openChannel,
     submitForm: submitForm,
     refreshAnimations: refreshAnimations,
-    showNotification: showNotification,
-    updateScroll: updateScroll
+    showNotification: showNotification
 };
 
 window.ScrollAnimations = { refresh: refreshAnimations };

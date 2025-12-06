@@ -1926,42 +1926,7 @@ body *:not(.floating-card i) {
                 box-shadow 0.3s ease;
 }
 
-/* ===== ОПТИМИЗАЦИЯ СКРОЛЛА ===== */
-html, body {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
 
-.main-container[data-scroll-container] {
-    min-height: 100vh;
-    will-change: transform;
-    transform-style: preserve-3d;
-}
-
-[data-scroll-section],
-.service-card,
-.case-card,
-.testimonial-card,
-.contact-card,
-.philosophy-card,
-.process-step,
-.floating-card {
-    will-change: transform, opacity;
-    transform: translateZ(0);
-}
-
-.dock,
-.floating-card,
-.service-card,
-.case-card,
-.testimonial-card {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
 
 /* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 1024px) {
