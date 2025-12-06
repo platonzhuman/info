@@ -1,14 +1,9 @@
-// PRICE_PROJECT - Единый JS файл с плавным инерционным скроллом (Locomotive Scroll)
-
-let locomotiveScroll; // Глобальная переменная для экземпляра скролла
+let locomotiveScroll;
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Приложение инициализировано');
     
-    // ИНИЦИАЛИЗАЦИЯ ПЛАВНОГО СКРОЛЛА С ИНЕРЦИЕЙ (1-й шаг)
     initSmoothScroll();
-    
-    // Инициализация остальных модулей
     initThemeToggle();
     initTime();
     initDockApps();
@@ -20,46 +15,40 @@ document.addEventListener('DOMContentLoaded', function() {
     initServiceNavigation();
 });
 
-// ==================== ЛОКОМОТИВ СКРОЛЛ (ИНЕРЦИОННЫЙ) ====================
+// ==================== ЛОКОМОТИВ СКРОЛЛ ====================
 function initSmoothScroll() {
-    // Ждем, чтобы все элементы DOM точно были готовы
     setTimeout(() => {
-        // Находим основной контейнер для скролла
         const scrollContainer = document.querySelector('.main-container');
         if (!scrollContainer) {
-            console.error('❌ Не найден .main-container для инициализации скролла');
+            console.error('Не найден .main-container');
             return;
         }
         
-        // Добавляем обязательный атрибут для работы Locomotive Scroll
         scrollContainer.setAttribute('data-scroll-container', '');
         
-        // Инициализация плавного скролла с настройками как на voron-dev.ru
         locomotiveScroll = new LocomotiveScroll({
             el: scrollContainer,
-            smooth: true,               // Включаем плавный скролл
-            multiplier: 1.3,            // Чуть увеличенная скорость
-            class: 'is-inview',         // Класс для анимируемых элементов
-            inertia: 0.7,               // Уровень инерции (плавучесть)
-            getDirection: true,         // Получаем направление скролла
+            smooth: true,
+            multiplier: 1.3,
+            class: 'is-inview',
+            inertia: 0.7,
+            getDirection: true,
             smartphone: {
-                smooth: true,           // Включаем на мобильных
-                breakpoint: 1024        // Брейкпоинт для мобильных
+                smooth: true,
+                breakpoint: 1024
             },
             tablet: {
-                smooth: true,           // Включаем на планшетах
+                smooth: true,
                 breakpoint: 1024
             }
         });
         
-        console.log('✅ Locomotive Scroll инициализирован');
+        console.log('Locomotive Scroll инициализирован');
         
-        // Обновляем скролл после загрузки изображений
         window.addEventListener('load', function() {
             if (locomotiveScroll) locomotiveScroll.update();
         });
         
-        // Обновляем при изменении размера окна
         window.addEventListener('resize', function() {
             if (locomotiveScroll) locomotiveScroll.update();
         });
@@ -67,7 +56,6 @@ function initSmoothScroll() {
     }, 100);
 }
 
-// Функция для принудительного обновления скролла (вызывать при смене контента)
 function updateScroll() {
     if (locomotiveScroll) {
         setTimeout(() => {
@@ -78,7 +66,6 @@ function updateScroll() {
 
 // ==================== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ====================
 function initThemeToggle() {
-    // Создаем кнопку если её нет в HTML
     if (!document.getElementById('themeToggle')) {
         const themeToggle = document.createElement('button');
         themeToggle.className = 'theme-toggle';
@@ -96,7 +83,6 @@ function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('i');
     
-    // Проверяем сохраненную тему
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
@@ -111,15 +97,12 @@ function initThemeToggle() {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
             localStorage.setItem('theme', 'light');
-            
         } else {
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
             localStorage.setItem('theme', 'dark');
-        
         }
         
-        // Обновляем скролл после смены темы
         updateScroll();
     });
 }
@@ -156,7 +139,6 @@ function initDockApps() {
         });
     });
     
-    // Активируем домашнюю секцию по умолчанию
     showSection('home');
 }
 
@@ -171,46 +153,38 @@ function initHeroVisualClicks() {
 }
 
 function navigateToService(serviceId) {
-    // Показываем секцию услуг
     showSection('services');
     
-    // После небольшой задержки скроллим к нужной карточке
     setTimeout(() => {
         const targetCard = document.getElementById(serviceId);
         if (targetCard) {
-            // Используем Locomotive Scroll для плавной прокрутки
             if (locomotiveScroll) {
                 locomotiveScroll.scrollTo(targetCard, {
-                    offset: -80, // Учитываем высоту статус-бара
+                    offset: -80,
                     duration: 800
                 });
             } else {
-                // Фолбэк на обычный скролл
                 targetCard.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
             
-            // Подсвечиваем карточку
             highlightCard(targetCard);
         }
         
-        // Обновляем скролл после навигации
         updateScroll();
-    }, 300); // Увеличена задержка для плавности
+    }, 300);
 }
 
 function highlightCard(card) {
     const originalBoxShadow = card.style.boxShadow;
     const originalBorderColor = card.style.borderColor;
     
-    // Добавляем подсветку
     card.style.boxShadow = '0 0 0 3px rgba(0, 122, 255, 0.5), 0 10px 25px rgba(0, 122, 255, 0.3)';
     card.style.borderColor = 'var(--primary)';
     card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
     
-    // Убираем подсветку через 3 секунды
     setTimeout(() => {
         card.style.boxShadow = originalBoxShadow;
         card.style.borderColor = originalBorderColor;
@@ -218,17 +192,14 @@ function highlightCard(card) {
 }
 
 function showSection(sectionId) {
-    // Скрываем все секции
     document.querySelectorAll('.content-area').forEach(section => {
         section.classList.remove('active');
     });
     
-    // Показываем нужную секцию
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
         targetSection.classList.add('active');
         
-        // Обновляем активное состояние в доке
         document.querySelectorAll('.dock-app').forEach(app => {
             app.classList.remove('active');
             if (app.getAttribute('data-target') === sectionId) {
@@ -236,13 +207,11 @@ function showSection(sectionId) {
             }
         });
         
-        // Обновляем скролл после смены секции
         updateScroll();
     }
 }
 
 function initServiceNavigation() {
-    // Если страница загрузилась с якорем #lending, #korp или #magazin
     const hash = window.location.hash.substring(1);
     if (hash && ['lending', 'korp', 'magazin'].includes(hash)) {
         setTimeout(() => {
@@ -292,7 +261,6 @@ let backToTopBtn = null;
 
 function initBackToTopButtons() {
     createMainButton();
-    setupSectionButtons();
 }
 
 function createMainButton() {
@@ -339,41 +307,6 @@ function createMainButton() {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
         }
-        
-        .section-back-btn {
-            display: block;
-            margin: 2rem auto 0;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-            border: none;
-        }
-        .section-back-btn:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
-        }
-        .section-back-btn i {
-            margin-right: 0.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .section-back-btn {
-                display: none !important;
-            }
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
-        }
     `;
     
     const styleSheet = document.createElement('style');
@@ -382,12 +315,12 @@ function createMainButton() {
     
     document.body.appendChild(backToTopBtn);
     
-    // Используем Locomotive Scroll для плавного скролла наверх
     backToTopBtn.addEventListener('click', function() {
         if (locomotiveScroll) {
             locomotiveScroll.scrollTo(0, {
                 duration: 1000,
-                easing: [0.25, 0.1, 0.25, 1] // ease-in-out
+                easing: [0.25, 0.1, 0.25, 1],
+                disableLerp: false
             });
         } else {
             window.scrollTo({
@@ -401,57 +334,12 @@ function createMainButton() {
     toggleBackToTopVisibility();
 }
 
-function setupSectionButtons() {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addSectionButtons);
-    } else {
-        setTimeout(addSectionButtons, 1000);
-    }
-    
-    window.addEventListener('resize', function() {
-        setTimeout(addSectionButtons, 500);
-    });
-}
-
-function addSectionButtons() {
-    const sections = document.querySelectorAll('.content-section');
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) return;
-    
-    sections.forEach(section => {
-        if (section.scrollHeight > window.innerHeight * 1.5 && 
-            !section.querySelector('.section-back-btn')) {
-            
-            const backBtn = document.createElement('button');
-            backBtn.className = 'section-back-btn';
-            backBtn.innerHTML = '<i class="fas fa-arrow-up"></i> Наверх';
-            backBtn.setAttribute('aria-label', 'Вернуться к началу секции');
-            
-            backBtn.addEventListener('click', () => {
-                const sectionTop = section.offsetTop - 80;
-                if (locomotiveScroll) {
-                    locomotiveScroll.scrollTo(sectionTop, {
-                        duration: 800
-                    });
-                } else {
-                    window.scrollTo({
-                        top: sectionTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-            
-            section.appendChild(backBtn);
-        }
-    });
-}
-
 function scrollToTop() {
     if (locomotiveScroll) {
         locomotiveScroll.scrollTo(0, {
             duration: 1000,
-            easing: [0.25, 0.1, 0.25, 1]
+            easing: [0.25, 0.1, 0.25, 1],
+            disableLerp: false
         });
     } else {
         window.scrollTo({
@@ -464,7 +352,8 @@ function scrollToTop() {
 function toggleBackToTopVisibility() {
     if (!backToTopBtn) return;
     
-    if (window.pageYOffset > 300) {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 300) {
         backToTopBtn.classList.add('visible');
     } else {
         backToTopBtn.classList.remove('visible');
@@ -473,7 +362,6 @@ function toggleBackToTopVisibility() {
 
 // ==================== АНИМАЦИИ ====================
 function initScrollAnimations() {
-    // С Locomotive Scroll используем его классы для анимаций
     addAnimationStyles();
     setupAnimationObserver();
     addAnimationClasses();
@@ -510,9 +398,6 @@ function addAnimationStyles() {
 }
 
 function setupAnimationObserver() {
-    // С Locomotive Scroll можно использовать его встроенные классы
-    // или оставить свой IntersectionObserver
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -643,7 +528,7 @@ window.App = {
     submitForm: submitForm,
     refreshAnimations: refreshAnimations,
     showNotification: showNotification,
-    updateScroll: updateScroll // Добавляем функцию обновления скролла
+    updateScroll: updateScroll
 };
 
 window.ScrollAnimations = { refresh: refreshAnimations };
