@@ -69,21 +69,22 @@ body {
 }
 
 /* ===== LAYOUT COMPONENTS ===== */
-/* Status Bar */
+/* ===== STATUS BAR ===== */
 .status-bar {
     background: var(--blur-bg);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: 0.8rem 1.5rem;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--gray-border);
+    height: 60px;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -93,24 +94,147 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
+/* Контейнер для иконок */
 .status-actions {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.8rem;
+    height: 100%;
 }
 
+/* Общие стили для всех кнопок в статус-баре */
+.status-actions > * {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 1.2rem;
+    outline: none;
+    padding: 0;
+}
+
+.theme-toggle .fa-sun {
+    color: #FF9500;
+}
+
+.theme-toggle .fa-moon {
+    color: var(--light);
+}
+
+/* Ссылки (телефон, телеграм) */
 .status-link {
     color: var(--gray);
     text-decoration: none;
-    transition: color 0.3s ease;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    padding: 0;
 }
 
-.status-link:hover {
+/* Эффекты при наведении */
+.status-link:hover,
+.theme-toggle:hover {
     color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
 }
 
+/* ===== LIGHT THEME ADJUSTMENTS ===== */
+body.light-theme .status-bar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #E5E5E7;
+}
+
+body.light-theme .logo {
+    background: linear-gradient(45deg, #007AFF, #34C759);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .theme-toggle .fa-moon {
+    color: #666666;
+}
+
+body.light-theme .status-link,
+body.light-theme .theme-toggle {
+    color: #666666;
+}
+
+body.light-theme .status-link:hover,
+body.light-theme .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .status-bar {
+        padding: 0 1rem;
+        height: 56px;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .status-actions {
+        gap: 0.6rem;
+    }
+    
+    .status-actions > * {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .status-bar {
+        padding: 0 0.8rem;
+        height: 52px;
+    }
+    
+    .status-actions {
+        gap: 0.4rem;
+    }
+    
+    .status-actions > * {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    
+    .logo {
+        font-size: 0.9rem;
+    }
+}
+
+/* Анимация при нажатии */
+.status-actions > *:active {
+    transform: scale(0.95);
+}
+
+/* Четкое отображение иконок */
+.status-actions i {
+    font-size: inherit;
+    line-height: 1;
+    display: block;
+}
 /* Main Container */
 .main-container {
     margin-top: 60px;
@@ -1993,4 +2117,364 @@ body {
 /* =================================================================================\
 =====================================================================================\
 ======================================================================================\ */
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    outline: none;
+    margin-right: 0.3rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
 
+.theme-toggle:hover {
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle .fa-sun {
+    color: #636161;
+}
+
+.theme-toggle .fa-moon {
+    color: var(--light);
+}
+
+/* ===== LIGHT THEME ===== */
+body.light-theme {
+    background: #ecebeb94;
+    color: #1D1D1F;
+}
+
+body.light-theme .status-bar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #E5E5E7;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+body.light-theme .logo {
+    background: linear-gradient(45deg, #007AFF, #34C759);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .status-link,
+body.light-theme .app-name,
+body.light-theme .hero-subtitle-apple,
+body.light-theme .section-subtitle-apple,
+body.light-theme .service-description,
+body.light-theme .case-description,
+body.light-theme .testimonial-text,
+body.light-theme .contact-description,
+body.light-theme .feature span,
+body.light-theme .option-name,
+body.light-theme .price-note,
+body.light-theme .stat-label,
+body.light-theme .result-label,
+body.light-theme .client-company,
+body.light-theme .client-details .client-company,
+body.light-theme .faq-item p {
+    color: #666666;
+}
+
+body.light-theme .hero-title-apple,
+body.light-theme .services-title,
+body.light-theme .cases-title,
+body.light-theme .contacts-title,
+body.light-theme .section-title-apple,
+body.light-theme .service-name,
+body.light-theme .case-content h3,
+body.light-theme .philosophy-card h3,
+body.light-theme .step-content h3,
+body.light-theme .testimonial-card h3,
+body.light-theme .contact-info h3,
+body.light-theme .form-card h3,
+body.light-theme .faq-item h4,
+body.light-theme .addon-card h4,
+body.light-theme .client-name,
+body.light-theme .client-details .client-name,
+body.light-theme .form-group label,
+body.light-theme .additional-options h4,
+body.light-theme .contact-username,
+body.light-theme .contact-link {
+    color: #1D1D1F;
+}
+
+body.light-theme .theme-toggle .fa-moon {
+    color: #666666;
+}
+
+body.light-theme .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Dock */
+body.light-theme .dock {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .dock::before {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.05), 
+        rgba(0, 0, 0, 0.01), 
+        rgba(0, 0, 0, 0.03));
+}
+
+body.light-theme .dock-app:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .dock-app.active {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .app-icon {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .dock-app.active .app-icon {
+    background: var(--gradient-primary);
+}
+
+/* Карточки */
+body.light-theme .service-card,
+body.light-theme .case-card,
+body.light-theme .testimonial-card,
+body.light-theme .contact-card,
+body.light-theme .philosophy-card,
+body.light-theme .process-step,
+body.light-theme .form-card,
+body.light-theme .faq-item,
+body.light-theme .addon-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .service-card:hover,
+body.light-theme .case-card:hover,
+body.light-theme .testimonial-card:hover,
+body.light-theme .contact-card:hover,
+body.light-theme .philosophy-card:hover,
+body.light-theme .process-step:hover {
+    border-color: var(--primary);
+}
+
+body.light-theme .service-pricing,
+body.light-theme .additional-options,
+body.light-theme .case-results {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Формы */
+body.light-theme .form-input,
+body.light-theme .form-textarea {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1D1D1F;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .form-input:focus,
+body.light-theme .form-textarea:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Кнопки */
+body.light-theme .section-back-btn {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1D1D1F;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .section-back-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+body.light-theme .btn-apple-secondary {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #1D1D1F;
+}
+
+body.light-theme .btn-apple-secondary:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: #666666;
+}
+
+body.light-theme .contact-btn {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+body.light-theme .service-btn {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+/* Tech tags */
+body.light-theme .tech-tag {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666666;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Stats */
+body.light-theme .stats-section-apple {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* CTA секция */
+body.light-theme .cta-section-apple {
+    background: var(--gradient-primary);
+}
+
+body.light-theme .cta-section-apple h2,
+body.light-theme .cta-section-apple p {
+    color: white;
+}
+
+/* Process steps */
+body.light-theme .process-step:hover {
+    border-color: var(--primary);
+}
+
+/* Floating cards */
+body.light-theme .floating-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+}
+
+body.light-theme .floating-card i {
+    color: #1D1D1F;
+}
+
+body.light-theme .floating-card::before {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0) 60%);
+}
+
+body.light-theme .floating-card::after {
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Feature icons */
+body.light-theme .feature i {
+    color: var(--accent);
+}
+
+/* Stars */
+body.light-theme .stars {
+    color: #FFD60A;
+}
+
+/* Hero section */
+body.light-theme .hero-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .section-title-apple {
+    background: linear-gradient(45deg, #1D1D1F, #424245);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .services-title,
+body.light-theme .cases-title,
+body.light-theme .contacts-title {
+    background: linear-gradient(45deg, #1D1D1F, #424245);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Градиенты для чисел */
+body.light-theme .stat-number,
+body.light-theme .price,
+body.light-theme .result-value {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Back to top button */
+body.light-theme .back-to-top {
+    background: var(--primary);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Плавный переход темы */
+body,
+body *:not(.floating-card i) {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Анимации тоже работают в светлой теме */
+body.light-theme .fade-in-up,
+body.light-theme .fade-in-left,
+body.light-theme .fade-in-right,
+body.light-theme .scale-in {
+    transition: all 0.6s ease;
+}
+
+/* Case photo overlay */
+body.light-theme .photo-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+body.light-theme .case-photo i {
+    color: white;
+}
+
+/* Home indicator */
+body.light-theme .home-line {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Option items */
+body.light-theme .option-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .option-price {
+    color: var(--accent);
+}
+
+/* Feature items */
+body.light-theme .feature {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}

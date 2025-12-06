@@ -1,8 +1,15 @@
-// PRICE_PROJECT - Единый JS файл
+// PRICE_PROJECT - Единый JS файл с плавным инерционным скроллом (Locomotive Scroll)
+
+let locomotiveScroll; // Глобальная переменная для экземпляра скролла
+
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Приложение инициализировано');
+    console.log('Приложение инициализировано');
     
-    // Инициализация всех модулей
+    // ИНИЦИАЛИЗАЦИЯ ПЛАВНОГО СКРОЛЛА С ИНЕРЦИЕЙ (1-й шаг)
+    initSmoothScroll();
+    
+    // Инициализация остальных модулей
+    initThemeToggle();
     initTime();
     initDockApps();
     initHeroVisualClicks();
@@ -12,6 +19,110 @@ document.addEventListener('DOMContentLoaded', function() {
     initButtonHandlers();
     initServiceNavigation();
 });
+
+// ==================== ЛОКОМОТИВ СКРОЛЛ (ИНЕРЦИОННЫЙ) ====================
+function initSmoothScroll() {
+    // Ждем, чтобы все элементы DOM точно были готовы
+    setTimeout(() => {
+        // Находим основной контейнер для скролла
+        const scrollContainer = document.querySelector('.main-container');
+        if (!scrollContainer) {
+            console.error('❌ Не найден .main-container для инициализации скролла');
+            return;
+        }
+        
+        // Добавляем обязательный атрибут для работы Locomotive Scroll
+        scrollContainer.setAttribute('data-scroll-container', '');
+        
+        // Инициализация плавного скролла с настройками как на voron-dev.ru
+        locomotiveScroll = new LocomotiveScroll({
+            el: scrollContainer,
+            smooth: true,               // Включаем плавный скролл
+            multiplier: 1.3,            // Чуть увеличенная скорость
+            class: 'is-inview',         // Класс для анимируемых элементов
+            inertia: 0.7,               // Уровень инерции (плавучесть)
+            getDirection: true,         // Получаем направление скролла
+            smartphone: {
+                smooth: true,           // Включаем на мобильных
+                breakpoint: 1024        // Брейкпоинт для мобильных
+            },
+            tablet: {
+                smooth: true,           // Включаем на планшетах
+                breakpoint: 1024
+            }
+        });
+        
+        console.log('✅ Locomotive Scroll инициализирован');
+        
+        // Обновляем скролл после загрузки изображений
+        window.addEventListener('load', function() {
+            if (locomotiveScroll) locomotiveScroll.update();
+        });
+        
+        // Обновляем при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (locomotiveScroll) locomotiveScroll.update();
+        });
+        
+    }, 100);
+}
+
+// Функция для принудительного обновления скролла (вызывать при смене контента)
+function updateScroll() {
+    if (locomotiveScroll) {
+        setTimeout(() => {
+            locomotiveScroll.update();
+        }, 50);
+    }
+}
+
+// ==================== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ====================
+function initThemeToggle() {
+    // Создаем кнопку если её нет в HTML
+    if (!document.getElementById('themeToggle')) {
+        const themeToggle = document.createElement('button');
+        themeToggle.className = 'theme-toggle';
+        themeToggle.id = 'themeToggle';
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        themeToggle.title = 'Сменить тему';
+        themeToggle.setAttribute('aria-label', 'Переключить тему');
+        
+        const statusActions = document.querySelector('.status-actions');
+        if (statusActions) {
+            statusActions.insertBefore(themeToggle, statusActions.firstChild);
+        }
+    }
+    
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Проверяем сохраненную тему
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-theme');
+        
+        if (document.body.classList.contains('light-theme')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'light');
+            
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'dark');
+        
+        }
+        
+        // Обновляем скролл после смены темы
+        updateScroll();
+    });
+}
 
 // ==================== ВРЕМЯ ====================
 let timeInterval;
@@ -67,16 +178,27 @@ function navigateToService(serviceId) {
     setTimeout(() => {
         const targetCard = document.getElementById(serviceId);
         if (targetCard) {
-            // Прокручиваем к карточке
-            targetCard.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            // Используем Locomotive Scroll для плавной прокрутки
+            if (locomotiveScroll) {
+                locomotiveScroll.scrollTo(targetCard, {
+                    offset: -80, // Учитываем высоту статус-бара
+                    duration: 800
+                });
+            } else {
+                // Фолбэк на обычный скролл
+                targetCard.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
             
             // Подсвечиваем карточку
             highlightCard(targetCard);
         }
-    }, 100);
+        
+        // Обновляем скролл после навигации
+        updateScroll();
+    }, 300); // Увеличена задержка для плавности
 }
 
 function highlightCard(card) {
@@ -86,6 +208,7 @@ function highlightCard(card) {
     // Добавляем подсветку
     card.style.boxShadow = '0 0 0 3px rgba(0, 122, 255, 0.5), 0 10px 25px rgba(0, 122, 255, 0.3)';
     card.style.borderColor = 'var(--primary)';
+    card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
     
     // Убираем подсветку через 3 секунды
     setTimeout(() => {
@@ -113,10 +236,8 @@ function showSection(sectionId) {
             }
         });
         
-        // Скроллим вверх только если это не переход к конкретной услуге
-        if (!['lending', 'korp', 'magazin'].includes(sectionId)) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        // Обновляем скролл после смены секции
+        updateScroll();
     }
 }
 
@@ -126,7 +247,7 @@ function initServiceNavigation() {
     if (hash && ['lending', 'korp', 'magazin'].includes(hash)) {
         setTimeout(() => {
             navigateToService(hash);
-        }, 500);
+        }, 800);
     }
 }
 
@@ -198,7 +319,7 @@ function createMainButton() {
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 1000;
+            z-index: 9999;
             backdrop-filter: blur(20px);
             opacity: 0;
             visibility: hidden;
@@ -260,7 +381,22 @@ function createMainButton() {
     document.head.appendChild(styleSheet);
     
     document.body.appendChild(backToTopBtn);
-    backToTopBtn.addEventListener('click', scrollToTop);
+    
+    // Используем Locomotive Scroll для плавного скролла наверх
+    backToTopBtn.addEventListener('click', function() {
+        if (locomotiveScroll) {
+            locomotiveScroll.scrollTo(0, {
+                duration: 1000,
+                easing: [0.25, 0.1, 0.25, 1] // ease-in-out
+            });
+        } else {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    });
+    
     window.addEventListener('scroll', toggleBackToTopVisibility);
     toggleBackToTopVisibility();
 }
@@ -294,10 +430,16 @@ function addSectionButtons() {
             
             backBtn.addEventListener('click', () => {
                 const sectionTop = section.offsetTop - 80;
-                window.scrollTo({
-                    top: sectionTop,
-                    behavior: 'smooth'
-                });
+                if (locomotiveScroll) {
+                    locomotiveScroll.scrollTo(sectionTop, {
+                        duration: 800
+                    });
+                } else {
+                    window.scrollTo({
+                        top: sectionTop,
+                        behavior: 'smooth'
+                    });
+                }
             });
             
             section.appendChild(backBtn);
@@ -306,10 +448,17 @@ function addSectionButtons() {
 }
 
 function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    if (locomotiveScroll) {
+        locomotiveScroll.scrollTo(0, {
+            duration: 1000,
+            easing: [0.25, 0.1, 0.25, 1]
+        });
+    } else {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 }
 
 function toggleBackToTopVisibility() {
@@ -324,6 +473,7 @@ function toggleBackToTopVisibility() {
 
 // ==================== АНИМАЦИИ ====================
 function initScrollAnimations() {
+    // С Locomotive Scroll используем его классы для анимаций
     addAnimationStyles();
     setupAnimationObserver();
     addAnimationClasses();
@@ -360,6 +510,9 @@ function addAnimationStyles() {
 }
 
 function setupAnimationObserver() {
+    // С Locomotive Scroll можно использовать его встроенные классы
+    // или оставить свой IntersectionObserver
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -489,9 +642,9 @@ window.App = {
     openChannel: openChannel,
     submitForm: submitForm,
     refreshAnimations: refreshAnimations,
-    showNotification: showNotification
+    showNotification: showNotification,
+    updateScroll: updateScroll // Добавляем функцию обновления скролла
 };
 
 window.ScrollAnimations = { refresh: refreshAnimations };
 window.Notifications = { show: showNotification };
-
