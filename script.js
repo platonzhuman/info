@@ -3,7 +3,11 @@ let locomotiveScroll;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Приложение инициализировано');
     
-    initSmoothScroll();
+    // Инициализируем скролл только на устройствах шириной 768px и больше
+    if (window.innerWidth >= 768) {
+        initSmoothScroll();
+    }
+    
     initThemeToggle();
     initTime();
     initDockApps();
@@ -26,28 +30,24 @@ function initSmoothScroll() {
         
         scrollContainer.setAttribute('data-scroll-container', '');
         
-        // Определяем, мобильное ли устройство
-        const isMobile = window.innerWidth <= 768 || 
-                        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
         locomotiveScroll = new LocomotiveScroll({
             el: scrollContainer,
-            smooth: true, // Всегда включаем плавный скролл
-            multiplier: isMobile ? 1 : 1.3, // На мобильных убираем множитель скорости
+            smooth: true,
+            multiplier: 1.3,
             class: 'is-inview',
-            inertia: isMobile ? 0 : 0.7, // На мобильных убираем инерцию
+            inertia: 0.7,
             getDirection: true,
             smartphone: {
-                smooth: true, // Оставляем плавный скролл
-                breakpoint: 1024
+                smooth: false,  // Отключаем на смартфонах
+                breakpoint: 768
             },
             tablet: {
-                smooth: true, // Оставляем плавный скролл
-                breakpoint: 1024
+                smooth: false,  // Отключаем на планшетах
+                breakpoint: 768
             }
         });
         
-        console.log('Locomotive Scroll инициализирован, мобильное устройство:', isMobile);
+        console.log('Locomotive Scroll инициализирован');
         
         window.addEventListener('load', function() {
             if (locomotiveScroll) locomotiveScroll.update();
