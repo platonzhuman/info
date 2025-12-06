@@ -1,4 +1,4 @@
-/* ===== RESET & VARIABLES ===== */
+/* ===== СБРОС И ПЕРЕМЕННЫЕ ===== */
 * {
     margin: 0;
     padding: 0;
@@ -41,7 +41,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== АНИМАЦИИ ===== */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -68,8 +68,12 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* ===== LAYOUT COMPONENTS ===== */
-/* ===== STATUS BAR ===== */
+@keyframes appIconAppear {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ===== СТАТУС БАР ===== */
 .status-bar {
     background: var(--blur-bg);
     backdrop-filter: blur(20px) saturate(180%);
@@ -99,7 +103,6 @@ body {
     height: 100%;
 }
 
-/* Контейнер для иконок */
 .status-actions {
     display: flex;
     align-items: center;
@@ -107,7 +110,6 @@ body {
     height: 100%;
 }
 
-/* Общие стили для всех кнопок в статус-баре */
 .status-actions > * {
     width: 40px;
     height: 40px;
@@ -119,7 +121,6 @@ body {
     flex-shrink: 0;
 }
 
-/* Кнопка переключения темы */
 .theme-toggle {
     background: none;
     border: none;
@@ -138,7 +139,6 @@ body {
     color: var(--light);
 }
 
-/* Ссылки (телефон, телеграм) */
 .status-link {
     color: var(--gray);
     text-decoration: none;
@@ -146,7 +146,6 @@ body {
     padding: 0;
 }
 
-/* Эффекты при наведении */
 .status-link:hover,
 .theme-toggle:hover {
     color: var(--primary);
@@ -154,88 +153,17 @@ body {
     transform: translateY(-1px);
 }
 
-/* ===== LIGHT THEME ADJUSTMENTS ===== */
-body.light-theme .status-bar {
-    background: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #E5E5E7;
-}
-
-body.light-theme .logo {
-    background: linear-gradient(45deg, #007AFF, #34C759);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .theme-toggle .fa-moon {
-    color: #666666;
-}
-
-body.light-theme .status-link,
-body.light-theme .theme-toggle {
-    color: #666666;
-}
-
-body.light-theme .status-link:hover,
-body.light-theme .theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-    .status-bar {
-        padding: 0 1rem;
-        height: 56px;
-    }
-    
-    .logo {
-        font-size: 1rem;
-    }
-    
-    .status-actions {
-        gap: 0.6rem;
-    }
-    
-    .status-actions > * {
-        width: 36px;
-        height: 36px;
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .status-bar {
-        padding: 0 0.8rem;
-        height: 52px;
-    }
-    
-    .status-actions {
-        gap: 0.4rem;
-    }
-    
-    .status-actions > * {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
-    }
-    
-    .logo {
-        font-size: 0.9rem;
-    }
-}
-
-/* Анимация при нажатии */
 .status-actions > *:active {
     transform: scale(0.95);
 }
 
-/* Четкое отображение иконок */
 .status-actions i {
     font-size: inherit;
     line-height: 1;
     display: block;
 }
-/* Main Container */
+
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
 .main-container {
     margin-top: 60px;
     padding: 1.5rem;
@@ -244,7 +172,6 @@ body.light-theme .theme-toggle:hover {
     margin-right: auto;
 }
 
-/* Content Areas */
 .content-area {
     display: none;
     animation: fadeIn 0.5s ease;
@@ -258,7 +185,164 @@ body.light-theme .theme-toggle:hover {
     margin-bottom: 4rem;
 }
 
-/* ===== TYPOGRAPHY ===== */
+/* ===== НАВИГАЦИЯ DOCK ===== */
+.dock {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 28px;
+    padding: 1.2rem 2rem;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: visible;
+    min-width: auto;
+    max-width: fit-content;
+}
+
+.dock::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0.02), 
+        rgba(255, 255, 255, 0.1));
+    border-radius: 29px;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.dock-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.8rem 1rem;
+    border-radius: 20px;
+    min-width: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.dock-app:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dock-app.active {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.dock-app.active::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    width: 5px;
+    height: 5px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.app-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dock-app.active .app-icon {
+    background: var(--gradient-primary);
+    box-shadow: 
+        0 10px 25px rgba(0, 123, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.app-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: brightness(0.95) contrast(1.1);
+    display: block;
+    opacity: 0.9;
+}
+
+.dock-app:hover .app-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dock-app:hover .app-icon img {
+    filter: brightness(1.2) contrast(1.2);
+    opacity: 1;
+}
+
+.dock-app.active .app-icon img {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+}
+
+.app-name {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    margin-top: 0.8rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+}
+
+.dock-app.active .app-name {
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dock-app:hover .app-name {
+    color: white;
+}
+
+.dock-app::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.dock-app:hover::before {
+    opacity: 0.15;
+}
+
+.dock-app.active::before {
+    opacity: 0.2;
+}
+
+/* ===== ТИПОГРАФИЯ ===== */
 .gradient-text {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -288,174 +372,7 @@ body.light-theme .theme-toggle:hover {
     margin-right: auto;
 }
 
-/* ===== FIXED DOCK NAVIGATION (NO JUMPING) ===== */
-.dock {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border-radius: 28px;
-    padding: 1.2rem 2rem;
-    margin: 0 auto 3rem auto;
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.15),
-        0 2px 8px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: visible;
-    min-width: auto;
-    max-width: fit-content;
-}
-
-/* Док эффект с градиентными краями */
-.dock::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.2), 
-        rgba(255, 255, 255, 0.02), 
-        rgba(255, 255, 255, 0.1));
-    border-radius: 29px;
-    z-index: -1;
-    opacity: 0.6;
-}
-
-.dock-app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.8rem 1rem;
-    border-radius: 20px;
-    min-width: 80px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Эффект наведения без прыжков */
-.dock-app:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.dock-app.active {
-    background: rgba(255, 255, 255, 0.18);
-}
-
-/* Индикатор активного элемента */
-.dock-app.active::after {
-    content: '';
-    position: absolute;
-    bottom: -12px;
-    width: 5px;
-    height: 5px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary);
-}
-
-/* Контейнер для иконок */
-.app-icon {
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 18px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    position: relative;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Эффект свечения для активной иконки */
-.dock-app.active .app-icon {
-    background: var(--gradient-primary);
-    box-shadow: 
-        0 10px 25px rgba(0, 123, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-/* Стили для изображений иконок */
-.app-icon img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    transition: all 0.3s ease;
-    filter: brightness(0.95) contrast(1.1);
-    display: block;
-    opacity: 0.9;
-}
-
-/* Эффект наведения для иконок без скачков */
-.dock-app:hover .app-icon {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.dock-app:hover .app-icon img {
-    filter: brightness(1.2) contrast(1.2);
-    opacity: 1;
-}
-
-/* Активная иконка */
-.dock-app.active .app-icon img {
-    filter: brightness(0) invert(1);
-    opacity: 1;
-}
-
-/* Название приложения */
-.app-name {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
-    margin-top: 0.8rem;
-    transition: all 0.3s ease;
-    text-align: center;
-    line-height: 1.2;
-    letter-spacing: 0.2px;
-}
-
-/* Состояния названия */
-.dock-app.active .app-name {
-    color: white;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.dock-app:hover .app-name {
-    color: white;
-}
-
-/* Фоновая анимация при наведении */
-.dock-app::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 20px;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: -1;
-}
-
-.dock-app:hover::before {
-    opacity: 0.15;
-}
-
-.dock-app.active::before {
-    opacity: 0.2;
-}
-/* ===== BUTTONS ===== */
+/* ===== КНОПКИ ===== */
 .btn-apple-primary {
     background: var(--gradient-primary);
     border: none;
@@ -498,7 +415,8 @@ body.light-theme .theme-toggle:hover {
     transform: translateY(-2px);
 }
 
-/* ===== HOME SECTION ===== */
+/* ===== ГЛАВНАЯ СТРАНИЦА ===== */
+/* Hero секция */
 .hero-section-apple {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -546,8 +464,8 @@ body.light-theme .theme-toggle:hover {
     align-items: center;
     justify-content: center;
 }
-/* ===== APPLE APP ICONS STYLE ===== */
 
+/* Плавающие иконки приложений */
 .floating-card {
     position: absolute;
     width: 80px;
@@ -558,7 +476,7 @@ body.light-theme .theme-toggle:hover {
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation: none; /* убираем float анимацию */
+    animation: none;
     padding: 0;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(40px);
@@ -567,7 +485,6 @@ body.light-theme .theme-toggle:hover {
     overflow: hidden;
 }
 
-/* Эффект приложения Apple */
 .floating-card::before {
     content: '';
     position: absolute;
@@ -579,7 +496,6 @@ body.light-theme .theme-toggle:hover {
     z-index: 1;
 }
 
-/* Текст под иконкой */
 .floating-card::after {
     content: attr(data-name);
     position: absolute;
@@ -597,7 +513,6 @@ body.light-theme .theme-toggle:hover {
     z-index: 3;
 }
 
-/* Иконка внутри */
 .floating-card i {
     font-size: 2rem;
     color: white;
@@ -606,12 +521,10 @@ body.light-theme .theme-toggle:hover {
     transition: transform 0.3s ease;
 }
 
-/* Убираем старый текст */
 .floating-card span {
     display: none;
 }
 
-/* Позиционирование иконок в треугольнике */
 .card-landing {
     top: 20%;
     left: 50%;
@@ -621,6 +534,7 @@ body.light-theme .theme-toggle:hover {
         0 10px 30px rgba(0, 122, 255, 0.25),
         0 6px 10px rgba(0, 122, 255, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    animation: appIconAppear 0.6s ease-out 0.2s both;
 }
 
 .card-corporate {
@@ -631,6 +545,7 @@ body.light-theme .theme-toggle:hover {
         0 10px 30px rgba(52, 199, 89, 0.25),
         0 6px 10px rgba(52, 199, 89, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    animation: appIconAppear 0.6s ease-out 0.4s both;
 }
 
 .card-shop {
@@ -641,53 +556,9 @@ body.light-theme .theme-toggle:hover {
         0 10px 30px rgba(255, 149, 0, 0.25),
         0 6px 10px rgba(255, 149, 0, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-/* Эффект наведения как в iOS */
-.floating-card:hover {
-    transform: scale(1.15) translateY(-5px);
-}
-
-.floating-card:hover::after {
-    opacity: 1;
-    bottom: -20px;
-}
-
-.floating-card:hover i {
-    transform: scale(1.1);
-}
-
-/* Анимация появления */
-@keyframes appIconAppear {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-.card-landing {
-    animation: appIconAppear 0.6s ease-out 0.2s both;
-}
-
-.card-corporate {
-    animation: appIconAppear 0.6s ease-out 0.4s both;
-}
-
-.card-shop {
     animation: appIconAppear 0.6s ease-out 0.6s both;
 }
 
-/* Эффект нажатия */
-.floating-card:active {
-    transform: scale(0.95);
-    transition: transform 0.1s ease;
-}
-
-/* Для AI, Web, App карточек тоже делаем стиль иконок */
 .card-ai {
     background: linear-gradient(135deg, #AF52DE 0%, #9B30D6 50%, #8A2BE2 100%);
     box-shadow: 
@@ -712,6 +583,24 @@ body.light-theme .theme-toggle:hover {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
+.floating-card:hover {
+    transform: scale(1.15) translateY(-5px);
+}
+
+.floating-card:hover::after {
+    opacity: 1;
+    bottom: -20px;
+}
+
+.floating-card:hover i {
+    transform: scale(1.1);
+}
+
+.floating-card:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
 .card-link {
     position: absolute;
     text-decoration: none;
@@ -732,112 +621,8 @@ body.light-theme .theme-toggle:hover {
     top: 60%;
     left: 15%;
 }
-/* Additional Options in Service Cards */
-.additional-options {
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    background: var(--card-bg);
-    border-radius: 12px;
-    border: 1px solid var(--gray-border);
-}
 
-.additional-options h4 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: var(--light);
-    font-weight: 600;
-}
-
-.option-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--gray-border);
-}
-
-.option-item:last-child {
-    border-bottom: none;
-}
-
-.option-name {
-    color: var(--gray);
-    font-size: 0.9rem;
-    flex: 1;
-    padding-right: 1rem;
-}
-
-.option-price {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 0.9rem;
-    white-space: nowrap;
-}
-
-/* Updated floating cards for websites */
-.card-landing {
-    top: 15%;
-    left: 40%;
-    animation-delay: 0s;
-    background: var(--gradient-primary);
-}
-
-.card-corporate {
-    top: 60%;
-    right: 15%;
-    animation-delay: 1s;
-    background: var(--gradient-success);
-}
-
-.card-shop {
-    top: 60%;
-    left: 15%;
-    animation-delay: 2s;
-    background: var(--gradient-orange);
-}
-
-/* Price comparison highlight */
-.price-note {
-    color: var(--accent);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-/* Service features improvements */
-.service-features {
-    margin-bottom: 1.5rem;
-}
-
-.feature {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.6rem 0;
-    color: var(--light);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.feature:last-child {
-    border-bottom: none;
-}
-
-.feature i {
-    color: var(--accent);
-    font-size: 0.9rem;
-    width: 16px;
-}
-
-/* Service card height adjustment for new content */
-.service-card {
-    min-height: 650px;
-    display: flex;
-    flex-direction: column;
-}
-
-.service-pricing {
-    margin-top: auto;
-}
-/* Stats Section */
+/* Статистика */
 .stats-section-apple {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -869,7 +654,7 @@ body.light-theme .theme-toggle:hover {
     font-weight: 500;
 }
 
-/* Philosophy Section */
+/* Философия */
 .philosophy-section-apple {
     padding: 4rem 0;
 }
@@ -920,7 +705,7 @@ body.light-theme .theme-toggle:hover {
     line-height: 1.6;
 }
 
-/* Process Section */
+/* Процесс */
 .process-section-apple {
     padding: 4rem 0;
 }
@@ -968,7 +753,7 @@ body.light-theme .theme-toggle:hover {
     line-height: 1.6;
 }
 
-/* ===== SERVICES SECTION ===== */
+/* ===== СТРАНИЦА УСЛУГ ===== */
 .services-hero {
     text-align: center;
     padding: 3rem 0 4rem;
@@ -1008,6 +793,9 @@ body.light-theme .theme-toggle:hover {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
@@ -1104,11 +892,58 @@ body.light-theme .theme-toggle:hover {
     gap: 0.8rem;
     padding: 0.5rem 0;
     color: var(--light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature:last-child {
+    border-bottom: none;
 }
 
 .feature i {
     color: var(--accent);
     font-size: 0.9rem;
+    width: 16px;
+}
+
+.additional-options {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--gray-border);
+}
+
+.additional-options h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--light);
+    font-weight: 600;
+}
+
+.option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.option-item:last-child {
+    border-bottom: none;
+}
+
+.option-name {
+    color: var(--gray);
+    font-size: 0.9rem;
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.option-price {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .service-pricing {
@@ -1117,6 +952,7 @@ body.light-theme .theme-toggle:hover {
     background: var(--card-bg);
     border-radius: 16px;
     text-align: center;
+    margin-top: auto;
 }
 
 .price {
@@ -1130,8 +966,9 @@ body.light-theme .theme-toggle:hover {
 }
 
 .price-note {
-    color: var(--gray);
+    color: var(--accent);
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .service-btn {
@@ -1156,7 +993,7 @@ body.light-theme .theme-toggle:hover {
     box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
 }
 
-/* Additional Services */
+/* Дополнительные услуги */
 .additional-services {
     padding: 4rem 0;
 }
@@ -1212,7 +1049,7 @@ body.light-theme .theme-toggle:hover {
     font-size: 1.1rem;
 }
 
-/* CTA Section */
+/* CTA секция */
 .cta-section-apple {
     background: var(--gradient-primary);
     border-radius: 24px;
@@ -1255,7 +1092,7 @@ body.light-theme .theme-toggle:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* ===== CASES SECTION ===== */
+/* ===== СТРАНИЦА КЕЙСОВ ===== */
 .cases-hero {
     text-align: center;
     padding: 3rem 0 4rem;
@@ -1293,17 +1130,29 @@ body.light-theme .theme-toggle:hover {
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.3s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    perspective: 1000px;
 }
 
 .case-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .case-image {
     position: relative;
-    height: 200px;
+    height: 250px;
     overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    transform-style: preserve-3d;
+}
+
+.case-card:hover .case-image {
+    transform: translateZ(10px);
 }
 
 .case-badge {
@@ -1312,11 +1161,13 @@ body.light-theme .theme-toggle:hover {
     left: 1rem;
     background: var(--gradient-primary);
     color: var(--light);
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
-    z-index: 2;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .image-content {
@@ -1325,7 +1176,64 @@ body.light-theme .theme-toggle:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.case-photo {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease;
+    background-color: var(--dark-gray);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.case-photo.loaded {
+    background-color: transparent;
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    transition: all 0.3s ease;
+}
+
+.case-photo i {
+    position: relative;
+    z-index: 2;
+    color: var(--light);
     font-size: 3.5rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.case-card:hover .case-photo {
+    transform: scale(1.05);
+}
+
+.case-card:hover .photo-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+.case-card:hover .case-photo i {
+    transform: scale(1.1);
+    color: var(--primary);
 }
 
 .case-content {
@@ -1387,120 +1295,8 @@ body.light-theme .theme-toggle:hover {
     color: var(--gray);
     border: 1px solid var(--gray-border);
 }
-/* Case Photo Styles */
-.case-photo {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: all 0.5s ease;
-}
 
-.photo-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.4) 50%,
-        rgba(0, 0, 0, 0.7) 100%
-    );
-    transition: all 0.3s ease;
-}
-
-.case-photo i {
-    position: relative;
-    z-index: 2;
-    color: var(--light);
-    font-size: 3.5rem;
-    transition: all 0.3s ease;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.case-card:hover .case-photo {
-    transform: scale(1.05);
-}
-
-.case-card:hover .photo-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 0, 0, 0.2) 50%,
-        rgba(0, 0, 0, 0.5) 100%
-    );
-}
-
-.case-card:hover .case-photo i {
-    transform: scale(1.1);
-    color: var(--primary);
-}
-
-/* Case Image Enhancements */
-.case-image {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-    border-radius: 20px 20px 0 0;
-}
-
-.case-badge {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: var(--gradient-primary);
-    color: var(--light);
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    z-index: 3;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.image-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* Loading state for images */
-.case-photo {
-    background-color: var(--dark-gray);
-}
-
-.case-photo.loaded {
-    background-color: transparent;
-}
-
-
-
-/* High-quality image optimization */
-.case-photo {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-}
-
-/* Add subtle parallax effect on hover */
-.case-card {
-    perspective: 1000px;
-}
-
-.case-image {
-    transform-style: preserve-3d;
-}
-
-.case-card:hover .case-image {
-    transform: translateZ(10px);
-}
-
-/* Gradient overlay variations based on project type */
+/* Градиенты для разных типов проектов */
 .case-card:nth-child(1) .photo-overlay {
     background: linear-gradient(
         135deg,
@@ -1527,7 +1323,8 @@ body.light-theme .theme-toggle:hover {
         rgba(79, 172, 254, 0.8) 100%
     );
 }
-/* Testimonials */
+
+/* Отзывы */
 .testimonials-section-apple {
     padding: 4rem 0;
 }
@@ -1592,20 +1389,8 @@ body.light-theme .theme-toggle:hover {
     color: var(--gray);
     font-size: 0.9rem;
 }
-.case-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.case-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-/* ===== CONTACTS SECTION ===== */
+/* ===== СТРАНИЦА КОНТАКТОВ ===== */
 .contacts-hero {
     text-align: center;
     padding: 3rem 0 4rem;
@@ -1724,7 +1509,7 @@ body.light-theme .theme-toggle:hover {
     box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
 }
 
-/* Form Section */
+/* Форма */
 .contact-form-section {
     height: fit-content;
 }
@@ -1808,7 +1593,7 @@ body.light-theme .theme-toggle:hover {
     box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
 }
 
-/* FAQ Section */
+/* FAQ */
 .faq-section {
     padding: 4rem 0;
 }
@@ -1844,7 +1629,7 @@ body.light-theme .theme-toggle:hover {
     line-height: 1.6;
 }
 
-/* ===== HOME INDICATOR ===== */
+/* Индикатор главной страницы */
 .home-indicator {
     text-align: center;
     margin: 3rem 0 1rem;
@@ -1858,7 +1643,327 @@ body.light-theme .theme-toggle:hover {
     border-radius: 2px;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/* ===== СВЕТЛАЯ ТЕМА ===== */
+body.light-theme {
+    background: #ecebeb94;
+    color: #1D1D1F;
+}
+
+body.light-theme .status-bar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #E5E5E7;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+body.light-theme .logo {
+    background: linear-gradient(45deg, #007AFF, #34C759);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .status-link,
+body.light-theme .app-name,
+body.light-theme .hero-subtitle-apple,
+body.light-theme .section-subtitle-apple,
+body.light-theme .service-description,
+body.light-theme .case-description,
+body.light-theme .testimonial-text,
+body.light-theme .contact-description,
+body.light-theme .feature span,
+body.light-theme .option-name,
+body.light-theme .price-note,
+body.light-theme .stat-label,
+body.light-theme .result-label,
+body.light-theme .client-company,
+body.light-theme .client-details .client-company,
+body.light-theme .faq-item p {
+    color: #666666;
+}
+
+body.light-theme .hero-title-apple,
+body.light-theme .services-title,
+body.light-theme .cases-title,
+body.light-theme .contacts-title,
+body.light-theme .section-title-apple,
+body.light-theme .service-name,
+body.light-theme .case-content h3,
+body.light-theme .philosophy-card h3,
+body.light-theme .step-content h3,
+body.light-theme .testimonial-card h3,
+body.light-theme .contact-info h3,
+body.light-theme .form-card h3,
+body.light-theme .faq-item h4,
+body.light-theme .addon-card h4,
+body.light-theme .client-name,
+body.light-theme .client-details .client-name,
+body.light-theme .form-group label,
+body.light-theme .additional-options h4,
+body.light-theme .contact-username,
+body.light-theme .contact-link {
+    color: #1D1D1F;
+}
+
+body.light-theme .theme-toggle .fa-moon {
+    color: #666666;
+}
+
+body.light-theme .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .dock {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .dock::before {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.05), 
+        rgba(0, 0, 0, 0.01), 
+        rgba(0, 0, 0, 0.03));
+}
+
+body.light-theme .dock-app:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .dock-app.active {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .app-icon {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .dock-app.active .app-icon {
+    background: var(--gradient-primary);
+}
+
+body.light-theme .service-card,
+body.light-theme .case-card,
+body.light-theme .testimonial-card,
+body.light-theme .contact-card,
+body.light-theme .philosophy-card,
+body.light-theme .process-step,
+body.light-theme .form-card,
+body.light-theme .faq-item,
+body.light-theme .addon-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .service-card:hover,
+body.light-theme .case-card:hover,
+body.light-theme .testimonial-card:hover,
+body.light-theme .contact-card:hover,
+body.light-theme .philosophy-card:hover,
+body.light-theme .process-step:hover {
+    border-color: var(--primary);
+}
+
+body.light-theme .service-pricing,
+body.light-theme .additional-options,
+body.light-theme .case-results {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .form-input,
+body.light-theme .form-textarea {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1D1D1F;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .form-input:focus,
+body.light-theme .form-textarea:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 1);
+}
+
+body.light-theme .btn-apple-secondary {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #1D1D1F;
+}
+
+body.light-theme .btn-apple-secondary:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: #666666;
+}
+
+body.light-theme .contact-btn {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+body.light-theme .service-btn {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+body.light-theme .tech-tag {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666666;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .stats-section-apple {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .cta-section-apple {
+    background: var(--gradient-primary);
+}
+
+body.light-theme .cta-section-apple h2,
+body.light-theme .cta-section-apple p {
+    color: white;
+}
+
+body.light-theme .floating-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+}
+
+body.light-theme .floating-card i {
+    color: #1D1D1F;
+}
+
+body.light-theme .floating-card::before {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0) 60%);
+}
+
+body.light-theme .floating-card::after {
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+body.light-theme .feature i {
+    color: var(--accent);
+}
+
+body.light-theme .stars {
+    color: #FFD60A;
+}
+
+body.light-theme .hero-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .section-title-apple {
+    background: linear-gradient(45deg, #1D1D1F, #424245);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .services-title,
+body.light-theme .cases-title,
+body.light-theme .contacts-title {
+    background: linear-gradient(45deg, #1D1D1F, #424245);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .stat-number,
+body.light-theme .price,
+body.light-theme .result-value {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .photo-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+body.light-theme .case-photo i {
+    color: white;
+}
+
+body.light-theme .home-line {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .option-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .option-price {
+    color: var(--accent);
+}
+
+body.light-theme .feature {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Плавный переход темы */
+body,
+body *:not(.floating-card i) {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* ===== ОПТИМИЗАЦИЯ СКРОЛЛА ===== */
+html, body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container[data-scroll-container] {
+    min-height: 100vh;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+[data-scroll-section],
+.service-card,
+.case-card,
+.testimonial-card,
+.contact-card,
+.philosophy-card,
+.process-step,
+.floating-card {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+.dock,
+.floating-card,
+.service-card,
+.case-card,
+.testimonial-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 1024px) {
     .hero-section-apple {
         grid-template-columns: 1fr;
@@ -1890,6 +1995,25 @@ body.light-theme .theme-toggle:hover {
     .main-container {
         margin-top: 50px;
         padding: 1rem;
+    }
+    
+    .status-bar {
+        padding: 0 1rem;
+        height: 56px;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .status-actions {
+        gap: 0.6rem;
+    }
+    
+    .status-actions > * {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
     }
     
     .hero-title-apple {
@@ -1963,6 +2087,7 @@ body.light-theme .theme-toggle:hover {
     .case-results {
         grid-template-columns: 1fr;
     }
+    
     .case-image {
         height: 200px;
     }
@@ -1970,10 +2095,12 @@ body.light-theme .theme-toggle:hover {
     .case-photo i {
         font-size: 2.5rem;
     }
+    
     .app-name {
         font-size: 0.7rem;
         margin-top: 0.4rem;
     }
+    
     .dock {
         gap: 1.5rem;
         padding: 1rem 1.5rem;
@@ -1996,9 +2123,32 @@ body.light-theme .theme-toggle:hover {
         width: 28px;
         height: 28px;
     }
+    
+    .main-container[data-scroll-container] {
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 @media (max-width: 480px) {
+    .status-bar {
+        padding: 0 0.8rem;
+        height: 52px;
+    }
+    
+    .status-actions {
+        gap: 0.4rem;
+    }
+    
+    .status-actions > * {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    
+    .logo {
+        font-size: 0.9rem;
+    }
+    
     .hero-title-apple {
         font-size: 2rem;
     }
@@ -2064,6 +2214,7 @@ body.light-theme .theme-toggle:hover {
         width: 18px;
         height: 18px;
     }
+    
     .dock {
         gap: 1rem;
         padding: 0.8rem 1rem;
@@ -2079,7 +2230,7 @@ body.light-theme .theme-toggle:hover {
     }
 }
 
-/* Dark mode optimizations */
+/* Поддержка различных режимов */
 @media (prefers-color-scheme: dark) {
     :root {
         --card-bg: rgba(255, 255, 255, 0.05);
@@ -2087,7 +2238,6 @@ body.light-theme .theme-toggle:hover {
     }
 }
 
-/* High contrast support */
 @media (prefers-contrast: high) {
     :root {
         --gray: #A8A8A8;
@@ -2099,7 +2249,6 @@ body.light-theme .theme-toggle:hover {
     }
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -2110,427 +2259,7 @@ body.light-theme .theme-toggle:hover {
     .floating-card {
         animation: none;
     }
-}
-
-
-
-/* =================================================================================\
-=====================================================================================\
-======================================================================================\ */
-/* ===== THEME TOGGLE ===== */
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--gray);
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
-    outline: none;
-    margin-right: 0.3rem;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-
-.theme-toggle:hover {
-    color: var(--primary);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.theme-toggle .fa-sun {
-    color: #636161;
-}
-
-.theme-toggle .fa-moon {
-    color: var(--light);
-}
-
-/* ===== LIGHT THEME ===== */
-body.light-theme {
-    background: #ecebeb94;
-    color: #1D1D1F;
-}
-
-body.light-theme .status-bar {
-    background: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #E5E5E7;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-}
-
-body.light-theme .logo {
-    background: linear-gradient(45deg, #007AFF, #34C759);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .status-link,
-body.light-theme .app-name,
-body.light-theme .hero-subtitle-apple,
-body.light-theme .section-subtitle-apple,
-body.light-theme .service-description,
-body.light-theme .case-description,
-body.light-theme .testimonial-text,
-body.light-theme .contact-description,
-body.light-theme .feature span,
-body.light-theme .option-name,
-body.light-theme .price-note,
-body.light-theme .stat-label,
-body.light-theme .result-label,
-body.light-theme .client-company,
-body.light-theme .client-details .client-company,
-body.light-theme .faq-item p {
-    color: #666666;
-}
-
-body.light-theme .hero-title-apple,
-body.light-theme .services-title,
-body.light-theme .cases-title,
-body.light-theme .contacts-title,
-body.light-theme .section-title-apple,
-body.light-theme .service-name,
-body.light-theme .case-content h3,
-body.light-theme .philosophy-card h3,
-body.light-theme .step-content h3,
-body.light-theme .testimonial-card h3,
-body.light-theme .contact-info h3,
-body.light-theme .form-card h3,
-body.light-theme .faq-item h4,
-body.light-theme .addon-card h4,
-body.light-theme .client-name,
-body.light-theme .client-details .client-name,
-body.light-theme .form-group label,
-body.light-theme .additional-options h4,
-body.light-theme .contact-username,
-body.light-theme .contact-link {
-    color: #1D1D1F;
-}
-
-body.light-theme .theme-toggle .fa-moon {
-    color: #666666;
-}
-
-body.light-theme .theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-/* Dock */
-body.light-theme .dock {
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .dock::before {
-    background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.05), 
-        rgba(0, 0, 0, 0.01), 
-        rgba(0, 0, 0, 0.03));
-}
-
-body.light-theme .dock-app:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .dock-app.active {
-    background: rgba(0, 0, 0, 0.08);
-}
-
-body.light-theme .app-icon {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-body.light-theme .dock-app.active .app-icon {
-    background: var(--gradient-primary);
-}
-
-/* Карточки */
-body.light-theme .service-card,
-body.light-theme .case-card,
-body.light-theme .testimonial-card,
-body.light-theme .contact-card,
-body.light-theme .philosophy-card,
-body.light-theme .process-step,
-body.light-theme .form-card,
-body.light-theme .faq-item,
-body.light-theme .addon-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .service-card:hover,
-body.light-theme .case-card:hover,
-body.light-theme .testimonial-card:hover,
-body.light-theme .contact-card:hover,
-body.light-theme .philosophy-card:hover,
-body.light-theme .process-step:hover {
-    border-color: var(--primary);
-}
-
-body.light-theme .service-pricing,
-body.light-theme .additional-options,
-body.light-theme .case-results {
-    background: rgba(0, 0, 0, 0.02);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-/* Формы */
-body.light-theme .form-input,
-body.light-theme .form-textarea {
-    background: rgba(255, 255, 255, 0.9);
-    color: #1D1D1F;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .form-input:focus,
-body.light-theme .form-textarea:focus {
-    border-color: var(--primary);
-    background: rgba(255, 255, 255, 1);
-}
-
-/* Кнопки */
-body.light-theme .section-back-btn {
-    background: rgba(0, 0, 0, 0.05);
-    color: #1D1D1F;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .section-back-btn:hover {
-    background: var(--primary);
-    color: white;
-}
-
-body.light-theme .btn-apple-secondary {
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #1D1D1F;
-}
-
-body.light-theme .btn-apple-secondary:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: #666666;
-}
-
-body.light-theme .contact-btn {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-body.light-theme .service-btn {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-/* Tech tags */
-body.light-theme .tech-tag {
-    background: rgba(0, 0, 0, 0.05);
-    color: #666666;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Stats */
-body.light-theme .stats-section-apple {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* CTA секция */
-body.light-theme .cta-section-apple {
-    background: var(--gradient-primary);
-}
-
-body.light-theme .cta-section-apple h2,
-body.light-theme .cta-section-apple p {
-    color: white;
-}
-
-/* Process steps */
-body.light-theme .process-step:hover {
-    border-color: var(--primary);
-}
-
-/* Floating cards */
-body.light-theme .floating-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-}
-
-body.light-theme .floating-card i {
-    color: #1D1D1F;
-}
-
-body.light-theme .floating-card::before {
-    background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.1) 0%, 
-        rgba(0, 0, 0, 0) 60%);
-}
-
-body.light-theme .floating-card::after {
-    color: white;
-    background: rgba(0, 0, 0, 0.7);
-}
-
-/* Feature icons */
-body.light-theme .feature i {
-    color: var(--accent);
-}
-
-/* Stars */
-body.light-theme .stars {
-    color: #FFD60A;
-}
-
-/* Hero section */
-body.light-theme .hero-gradient {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .section-title-apple {
-    background: linear-gradient(45deg, #1D1D1F, #424245);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .services-title,
-body.light-theme .cases-title,
-body.light-theme .contacts-title {
-    background: linear-gradient(45deg, #1D1D1F, #424245);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Градиенты для чисел */
-body.light-theme .stat-number,
-body.light-theme .price,
-body.light-theme .result-value {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Back to top button */
-body.light-theme .back-to-top {
-    background: var(--primary);
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-
-
-/* =================================================================================\ 
- =================================================================================\*/
- 
-/* Плавный переход темы */
-body,
-body *:not(.floating-card i) {
-    transition: background-color 0.3s ease, 
-                color 0.3s ease, 
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
-}
-
-/* Анимации тоже работают в светлой теме */
-body.light-theme .fade-in-up,
-body.light-theme .fade-in-left,
-body.light-theme .fade-in-right,
-body.light-theme .scale-in {
-    transition: all 0.6s ease;
-}
-
-/* Case photo overlay */
-body.light-theme .photo-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.6) 0%,
-        rgba(0, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.6) 100%
-    );
-}
-
-body.light-theme .case-photo i {
-    color: white;
-}
-
-/* Home indicator */
-body.light-theme .home-line {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-/* Option items */
-body.light-theme .option-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .option-price {
-    color: var(--accent);
-}
-
-/* Feature items */
-body.light-theme .feature {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-/* ===== FIXES FOR LOCOMOTIVE SCROLL ===== */
-html, body {
-    overflow: hidden; /* Важно! Предотвращает двойной скролл */
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* Главный контейнер скролла */
-.main-container[data-scroll-container] {
-    min-height: 100vh;
-    will-change: transform; /* Оптимизация для анимаций */
-    transform-style: preserve-3d; /* Для плавности */
-}
-
-/* Улучшение производительности для всех анимируемых элементов */
-[data-scroll-section],
-.service-card,
-.case-card,
-.testimonial-card,
-.contact-card,
-.philosophy-card,
-.process-step,
-.floating-card {
-    will-change: transform, opacity;
-    transform: translateZ(0); /* Аппаратное ускорение */
-}
-
-/* Улучшение скролла на мобильных */
-@media (max-width: 768px) {
-    .main-container[data-scroll-container] {
-        -webkit-overflow-scrolling: touch;
-    }
-}
-/* Аппаратное ускорение для критичных элементов */
-.dock,
-.floating-card,
-.service-card,
-.case-card,
-.testimonial-card {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
-/* Отключаем ненужные анимации при скролле */
-@media (prefers-reduced-motion: reduce) {
+    
     .main-container[data-scroll-container] {
         scroll-behavior: auto;
     }
