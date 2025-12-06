@@ -3,11 +3,7 @@ let locomotiveScroll;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Приложение инициализировано');
     
-    // Инициализируем плавный скролл только на десктопах
-    if (!isMobileDevice()) {
-        initSmoothScroll();
-    }
-    
+    initSmoothScroll();
     initThemeToggle();
     initTime();
     initDockApps();
@@ -19,20 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initServiceNavigation();
 });
 
-// ==================== ОПРЕДЕЛЕНИЕ МОБИЛЬНОГО УСТРОЙСТВА ====================
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-           window.innerWidth <= 768;
-}
-
 // ==================== ЛОКОМОТИВ СКРОЛЛ ====================
 function initSmoothScroll() {
-    // Если мобильное устройство, не инициализируем Locomotive Scroll
-    if (isMobileDevice()) {
-        console.log('Плавный скролл отключен на мобильном устройстве');
-        return;
-    }
-    
     setTimeout(() => {
         const scrollContainer = document.querySelector('.main-container');
         if (!scrollContainer) {
@@ -42,24 +26,28 @@ function initSmoothScroll() {
         
         scrollContainer.setAttribute('data-scroll-container', '');
         
+        // Определяем, мобильное ли устройство
+        const isMobile = window.innerWidth <= 768 || 
+                        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
         locomotiveScroll = new LocomotiveScroll({
             el: scrollContainer,
-            smooth: true,
-            multiplier: 1.3,
+            smooth: true, // Всегда включаем плавный скролл
+            multiplier: isMobile ? 1 : 1.3, // На мобильных убираем множитель скорости
             class: 'is-inview',
-            inertia: 0.7,
+            inertia: isMobile ? 0 : 0.7, // На мобильных убираем инерцию
             getDirection: true,
             smartphone: {
-                smooth: false,  // Отключаем на смартфонах
+                smooth: true, // Оставляем плавный скролл
                 breakpoint: 1024
             },
             tablet: {
-                smooth: false,  // Отключаем на планшетах
+                smooth: true, // Оставляем плавный скролл
                 breakpoint: 1024
             }
         });
         
-        console.log('Locomotive Scroll инициализирован');
+        console.log('Locomotive Scroll инициализирован, мобильное устройство:', isMobile);
         
         window.addEventListener('load', function() {
             if (locomotiveScroll) locomotiveScroll.update();
