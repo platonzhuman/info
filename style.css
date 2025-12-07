@@ -1645,8 +1645,18 @@ body {
 
 /* ===== СВЕТЛАЯ ТЕМА ===== */
 body.light-theme {
-    background: #ecebeb94;
-    color: #1D1D1F;
+    background: linear-gradient(180deg,
+        #FFFFFF 0%,
+        #FAFBFF 15%,
+        #F5F7FF 30%,
+        #F0F3FF 50%,
+        #E8ECFF 70%,
+        #E0E5FF 85%,
+        #D8DEFF 100%
+    );
+    background-attachment: fixed;
+    color: #454547;
+    min-height: 100vh;
 }
 
 body.light-theme .status-bar {
@@ -1702,7 +1712,7 @@ body.light-theme .form-group label,
 body.light-theme .additional-options h4,
 body.light-theme .contact-username,
 body.light-theme .contact-link {
-    color: #1D1D1F;
+    color: #373738;
 }
 
 body.light-theme .theme-toggle .fa-moon {
@@ -1775,7 +1785,7 @@ body.light-theme .case-results {
 body.light-theme .form-input,
 body.light-theme .form-textarea {
     background: rgba(255, 255, 255, 0.9);
-    color: #1D1D1F;
+    color: #6d6d70;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -1788,7 +1798,7 @@ body.light-theme .form-textarea:focus {
 body.light-theme .btn-apple-secondary {
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #1D1D1F;
+    color: #525253;
 }
 
 body.light-theme .btn-apple-secondary:hover {
@@ -2229,4 +2239,3 @@ body *:not(.floating-card i) {
         scroll-behavior: auto;
     }
 }
-
