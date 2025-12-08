@@ -1182,6 +1182,7 @@ body {
     color: var(--light);
     font-size: 0.9rem;
     display: block;
+    color: white;
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
@@ -2534,7 +2535,9 @@ body.light-theme .photo-overlay {
 body.light-theme .case-photo i {
     color: white;
 }
-
+body.light-theme .range-label{
+    color: black;
+}
 /* Индикатор главной страницы */
 body.light-theme .home-line {
     background: rgba(0, 0, 0, 0.2);
