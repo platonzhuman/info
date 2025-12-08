@@ -2906,6 +2906,19 @@ body.light-theme .process-step .step-info p {
         grid-column: span 1;
         max-width: 100%;
     }
+    .partnership-btn {
+        padding: 0.8rem 1.2rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        margin: 0 auto !important; /* Центрирование */
+        border-radius: 10px !important;
+        text-align: center !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3046,6 +3059,16 @@ body.light-theme .process-step .step-info p {
         animation: none;
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
