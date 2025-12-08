@@ -1,4 +1,4 @@
-/* ===== СБРОС И ПЕРЕМЕННЫЕ ===== */
+/* ===== СБРОС И БАЗОВЫЕ СТИЛИ ===== */
 * {
     margin: 0;
     padding: 0;
@@ -7,12 +7,14 @@
 }
 
 :root {
+    /* Цветовая палитра */
     --primary: #007AFF;
     --secondary: #5856D6;
     --accent: #34C759;
     --accent-orange: #FF9500;
     --accent-pink: #FF2D55;
     
+    /* Оттенки */
     --dark: #1c1f1f;
     --darker: #1D1D1F;
     --dark-gray: #2C2C2E;
@@ -21,10 +23,12 @@
     --gray-light: #F5F5F7;
     --gray-border: #3A3A3C;
     
+    /* Фоны */
     --card-bg: rgba(255, 255, 255, 0.05);
     --card-bg-light: rgba(255, 255, 255, 0.08);
     --blur-bg: rgba(29, 29, 31, 0.8);
     
+    /* Градиенты */
     --gradient-primary: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
     --gradient-success: linear-gradient(135deg, #34C759 0%, #30D158 100%);
     --gradient-orange: linear-gradient(135deg, #FF9500 0%, #FF9F0A 100%);
@@ -71,6 +75,79 @@ body {
 @keyframes appIconAppear {
     0% { opacity: 0; transform: scale(0.8) translateY(20px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ===== ТИПОГРАФИЯ ===== */
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-title-apple {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(45deg, var(--light), var(--gray-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle-apple {
+    font-size: 1.2rem;
+    color: var(--gray);
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== КНОПКИ ===== */
+.btn-apple-primary {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+}
+
+.btn-apple-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
+}
+
+.btn-apple-secondary {
+    background: transparent;
+    border: 1px solid var(--gray-border);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.btn-apple-secondary:hover {
+    background: var(--card-bg-light);
+    border-color: var(--gray);
+    transform: translateY(-2px);
 }
 
 /* ===== СТАТУС БАР ===== */
@@ -181,11 +258,7 @@ body {
     display: block;
 }
 
-.content-section {
-    margin-bottom: 4rem;
-}
-
-/* ===== НАВИГАЦИЯ DOCK ===== */
+/* ===== DOCK НАВИГАЦИЯ ===== */
 .dock {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(40px) saturate(200%);
@@ -342,81 +415,7 @@ body {
     opacity: 0.2;
 }
 
-/* ===== ТИПОГРАФИЯ ===== */
-.gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.section-title-apple {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-    background: linear-gradient(45deg, var(--light), var(--gray-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.section-subtitle-apple {
-    font-size: 1.2rem;
-    color: var(--gray);
-    text-align: center;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ===== КНОПКИ ===== */
-.btn-apple-primary {
-    background: var(--gradient-primary);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    color: var(--light);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    text-decoration: none;
-}
-
-.btn-apple-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
-}
-
-.btn-apple-secondary {
-    background: transparent;
-    border: 1px solid var(--gray-border);
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    color: var(--light);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.btn-apple-secondary:hover {
-    background: var(--card-bg-light);
-    border-color: var(--gray);
-    transform: translateY(-2px);
-}
-
 /* ===== ГЛАВНАЯ СТРАНИЦА ===== */
-/* Hero секция */
 .hero-section-apple {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -465,7 +464,7 @@ body {
     justify-content: center;
 }
 
-/* Плавающие иконки приложений */
+/* Плавающие карточки */
 .floating-card {
     position: absolute;
     width: 80px;
@@ -521,10 +520,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-.floating-card span {
-    display: none;
-}
-
 .card-landing {
     top: 20%;
     left: 50%;
@@ -559,29 +554,15 @@ body {
     animation: appIconAppear 0.6s ease-out 0.6s both;
 }
 
-.card-ai {
-    background: linear-gradient(135deg, #AF52DE 0%, #9B30D6 50%, #8A2BE2 100%);
-    box-shadow: 
-        0 10px 30px rgba(175, 82, 222, 0.25),
-        0 6px 10px rgba(175, 82, 222, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+.card-link {
+    position: absolute;
+    text-decoration: none;
+    display: block;
 }
 
-.card-web {
-    background: linear-gradient(135deg, #007AFF 0%, #0056CC 50%, #0047AB 100%);
-    box-shadow: 
-        0 10px 30px rgba(0, 122, 255, 0.25),
-        0 6px 10px rgba(0, 122, 255, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.card-app {
-    background: linear-gradient(135deg, #FF9500 0%, #FF7B00 50%, #FF6000 100%);
-    box-shadow: 
-        0 10px 30px rgba(255, 149, 0, 0.25),
-        0 6px 10px rgba(255, 149, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
+.card-link:nth-child(1) { top: 15%; left: 40%; }
+.card-link:nth-child(2) { top: 60%; right: 15%; }
+.card-link:nth-child(3) { top: 60%; left: 15%; }
 
 .floating-card:hover {
     transform: scale(1.15) translateY(-5px);
@@ -599,27 +580,6 @@ body {
 .floating-card:active {
     transform: scale(0.95);
     transition: transform 0.1s ease;
-}
-
-.card-link {
-    position: absolute;
-    text-decoration: none;
-    display: block;
-}
-
-.card-link:nth-child(1) {
-    top: 15%;
-    left: 40%;
-}
-
-.card-link:nth-child(2) {
-    top: 60%;
-    right: 15%;
-}
-
-.card-link:nth-child(3) {
-    top: 60%;
-    left: 15%;
 }
 
 /* Статистика */
@@ -705,7 +665,7 @@ body {
     line-height: 1.6;
 }
 
-/* Процесс */
+/* Процесс работы */
 .process-section-apple {
     padding: 4rem 0;
 }
@@ -753,7 +713,7 @@ body {
     line-height: 1.6;
 }
 
-/* ===== СТРАНИЦА УСЛУГ ===== */
+/* ===== УСЛУГИ ===== */
 .services-hero {
     text-align: center;
     padding: 3rem 0 4rem;
@@ -784,6 +744,7 @@ body {
     margin-bottom: 4rem;
 }
 
+/* Карточка услуги */
 .service-card {
     background: var(--card-bg-light);
     backdrop-filter: blur(20px);
@@ -819,17 +780,9 @@ body {
     opacity: 1;
 }
 
-.service-premium {
-    border-color: rgba(0, 122, 255, 0.3);
-}
-
-.service-business {
-    border-color: rgba(52, 199, 89, 0.3);
-}
-
-.service-enterprise {
-    border-color: rgba(255, 149, 0, 0.3);
-}
+.service-premium { border-color: rgba(0, 122, 255, 0.3); }
+.service-business { border-color: rgba(52, 199, 89, 0.3); }
+.service-enterprise { border-color: rgba(255, 149, 0, 0.3); }
 
 .service-header {
     display: flex;
@@ -849,17 +802,9 @@ body {
     font-size: 1.5rem;
 }
 
-.service-premium .service-icon {
-    background: var(--gradient-primary);
-}
-
-.service-business .service-icon {
-    background: var(--gradient-success);
-}
-
-.service-enterprise .service-icon {
-    background: var(--gradient-orange);
-}
+.service-premium .service-icon { background: var(--gradient-primary); }
+.service-business .service-icon { background: var(--gradient-success); }
+.service-enterprise .service-icon { background: var(--gradient-orange); }
 
 .service-badge {
     background: var(--gradient-primary);
@@ -882,6 +827,7 @@ body {
     margin-bottom: 2rem;
 }
 
+/* Особенности услуги */
 .service-features {
     margin-bottom: 2rem;
 }
@@ -905,6 +851,7 @@ body {
     width: 16px;
 }
 
+/* Дополнительные опции */
 .additional-options {
     margin: 1.5rem 0;
     padding: 1.5rem;
@@ -946,6 +893,7 @@ body {
     white-space: nowrap;
 }
 
+/* Цена */
 .service-pricing {
     margin-bottom: 2rem;
     padding: 1.5rem;
@@ -971,6 +919,7 @@ body {
     font-weight: 500;
 }
 
+/* Кнопка заказа */
 .service-btn {
     width: 100%;
     background: var(--gradient-primary);
@@ -992,8 +941,6 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
 }
-
-
 
 /* ===== ПАРТНЁРСКИЕ ПРОГРАММЫ ===== */
 .partnership-section {
@@ -1039,13 +986,8 @@ body {
     z-index: 2;
 }
 
-.education-program .partnership-badge {
-    background: var(--gradient-success);
-}
-
-.referral-program .partnership-badge {
-    background: var(--gradient-orange);
-}
+.investment-program .partnership-badge { background: var(--gradient-success); }
+.referral-program .partnership-badge { background: var(--gradient-orange); }
 
 .partnership-icon {
     width: 80px;
@@ -1059,19 +1001,32 @@ body {
     font-size: 2rem;
 }
 
-.education-program .partnership-icon {
-    background: var(--gradient-success);
-}
-
-.referral-program .partnership-icon {
-    background: var(--gradient-orange);
-}
+.investment-program .partnership-icon { background: var(--gradient-success); }
+.referral-program .partnership-icon { background: var(--gradient-orange); }
 
 .partnership-title {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--light);
+}
+
+.partnership-tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    color: var(--light);
+    font-size: 1.1rem;
+    padding: 1rem;
+    background: rgba(52, 199, 89, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(52, 199, 89, 0.2);
+    margin: 1rem 0;
+}
+
+.partnership-tagline i {
+    color: var(--accent);
 }
 
 .partnership-description {
@@ -1081,111 +1036,45 @@ body {
     flex-grow: 1;
 }
 
-.partnership-description .highlight {
-    color: var(--light);
-    font-weight: 600;
-    background: rgba(0, 122, 255, 0.1);
-    padding: 0.2rem 0.5rem;
-    border-radius: 6px;
-}
-
-.partnership-features {
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    background: var(--card-bg);
-    border-radius: 16px;
-    border: 1px solid var(--gray-border);
-}
-
-.feature-item {
-    display: flex;
-    align-items: flex-start;
+/* Диаграмма процесса - АДАПТИВНАЯ GRID СЕТКА */
+.process-diagram {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 равные колонки */
     gap: 1rem;
-    margin-bottom: 1rem;
-    color: var(--light);
+    margin: 2rem 0;
+    width: 100%;
+    padding-top: 20px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
-.feature-item:last-child {
-    margin-bottom: 0;
-}
-
-.feature-item i {
-    color: var(--accent);
-    font-size: 1rem;
-    margin-top: 0.2rem;
-    flex-shrink: 0;
-}
-
-/* Бонус бокс для студентов */
-.bonus-box {
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    background: rgba(52, 199, 89, 0.05);
-    border-radius: 16px;
-    border: 1px solid rgba(52, 199, 89, 0.1);
-}
-
-.bonus-box h4 {
-    color: var(--accent);
-    font-size: 1rem;
-    margin-bottom: 1rem;
+/* Шаг процесса */
+.process-step {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-}
-
-.bonus-box p {
-    color: var(--gray);
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-}
-
-.bonus-box ul {
-    list-style: none;
-    padding-left: 1rem;
-}
-
-.bonus-box li {
-    color: var(--light);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem;
-    position: relative;
-}
-
-.bonus-box li:before {
-    content: "✓";
-    color: var(--accent);
-    position: absolute;
-    left: -1rem;
-}
-
-/* Уровни реферальной программы */
-.referral-levels {
-    margin: 1.5rem 0;
-}
-
-.level-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding: 1.2rem;
+    text-align: center;
+    padding: 1.5rem;
     background: var(--card-bg);
     border-radius: 16px;
     border: 1px solid var(--gray-border);
     transition: all 0.3s ease;
+    min-height: 150px;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box; /* Важно для корректного расчёта размеров */
 }
 
-.level-card:hover {
+.process-step:hover {
     border-color: var(--primary);
-    transform: translateX(5px);
+    transform: translateY(-5px);
 }
 
-.level-number {
+.process-step .step-number {
     width: 40px;
     height: 40px;
-    background: var(--gradient-orange);
+    background: var(--gradient-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1193,85 +1082,203 @@ body {
     font-size: 1.2rem;
     font-weight: 700;
     color: white;
+    margin-bottom: 1rem;
+    flex-shrink: 0; /* Предотвращает сжатие */
+}
+
+.process-step .step-info {
+    width: 100%;
+    max-width: 100%;
+}
+
+.process-step .step-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--light);
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.process-step .step-info p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    display: block;
+    overflow: hidden;
+    max-height: 4.2em; /* Ограничение высоты (примерно 3 строки) */
+    text-overflow: ellipsis;
+}
+
+/* Стрелки между шагами */
+.process-arrow {
+    display: none; /* По умолчанию скрываем, используем псевдоэлементы или другой подход */
+}
+
+
+
+
+/* ДЕКОРАТИВНЫЕ СТРЕЛКИ МЕЖДУ ШАГАМИ (опционально) */
+.process-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: -0.8rem;
+    transform: translateY(-50%);
+    color: var(--primary);
+    font-size: 1.2rem;
+    opacity: 0.7;
+    display: none; /* По умолчанию скрыто */
+}
+
+
+
+/* ОБЯЗАТЕЛЬНО для карточки с диаграммой */
+.partnership-card {
+    overflow: hidden; /* Главное правило - скрывает всё, что выходит за границы */
+    position: relative;
+}
+
+.partnership-card .process-diagram {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Шкала процентов */
+.percentage-scale {
+    background: rgba(52, 199, 89, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(52, 199, 89, 0.1);
+    margin: 1.5rem 0;
+}
+
+.percentage-scale h4 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.scale-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scale-item:last-child {
+    border-bottom: none;
+}
+
+.scale-range {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.range-label {
+    color: var(--light);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.range-bar {
+    display: block;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    display: block;
+    height: 100%;
+    background: var(--gradient-success);
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+.scale-percentage {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.2rem;
+    min-width: 60px;
+    text-align: right;
+}
+
+.scale-note {
+    color: var(--gray);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-style: italic;
+}
+
+/* Список преимуществ */
+.benefits-list {
+    margin: 1.5rem 0;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.benefit-item:last-child {
+    border-bottom: none;
+}
+
+.benefit-item i {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-top: 0.2rem;
     flex-shrink: 0;
 }
 
-.level-content {
-    flex: 1;
-}
-
-.level-content h4 {
+.benefit-text {
     color: var(--light);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.level-content p {
-    color: var(--light);
-    margin-bottom: 0.3rem;
-    font-size: 0.95rem;
-}
-
-.level-content .level-conditions {
-    color: var(--gray);
-    font-size: 0.85rem;
-    font-style: italic;
-    margin-top: 0.5rem;
-}
-
-/* Как это работает */
-.how-it-works {
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    background: rgba(255, 149, 0, 0.05);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 149, 0, 0.1);
-}
-
-.how-it-works h4 {
-    color: var(--accent-orange);
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.how-it-works ol {
-    padding-left: 1.5rem;
-    color: var(--light);
-}
-
-.how-it-works li {
-    margin-bottom: 0.8rem;
     font-size: 0.9rem;
+    line-height: 1.5;
 }
 
-.security-features {
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    background: rgba(255, 45, 85, 0.05);
+.benefit-text strong {
+    color: var(--accent);
+}
+
+/* Условия */
+.conditions-box {
+    background: rgba(0, 122, 255, 0.05);
     border-radius: 16px;
-    border: 1px solid rgba(255, 45, 85, 0.1);
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 122, 255, 0.1);
+    margin: 1.5rem 0;
 }
 
-.security-features h4 {
-    color: var(--accent-pink);
-    font-size: 1rem;
+.conditions-box h4 {
+    color: var(--primary);
+    font-size: 1.1rem;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.security-features ul {
+.conditions-box ul {
     list-style: none;
-    padding-left: 0;
+    padding-left: 1rem;
 }
 
-.security-features li {
-    color: var(--gray);
+.conditions-box li {
+    color: var(--light);
     font-size: 0.9rem;
     margin-bottom: 0.8rem;
     padding-left: 1.5rem;
@@ -1279,50 +1286,145 @@ body {
     line-height: 1.5;
 }
 
-.security-features li:before {
+.conditions-box li:before {
     content: "•";
-    color: var(--accent-pink);
+    color: var(--primary);
     position: absolute;
     left: 0;
+    font-size: 1.2rem;
 }
 
-.partnership-btn {
-    margin-top: auto;
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-/* Дополнительная информация */
-.additional-info-section {
-    margin-top: 4rem;
-    padding-top: 4rem;
-    border-top: 1px solid var(--gray-border);
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.info-card {
-    background: var(--card-bg-light);
-    border: 1px solid var(--gray-border);
+/* Шкала уровней */
+.levels-scale {
+    background: rgba(255, 149, 0, 0.05);
     border-radius: 16px;
-    padding: 2rem;
-    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 149, 0, 0.1);
+    margin: 1.5rem 0;
+}
+
+.levels-scale h4 {
+    color: var(--accent-orange);
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.level-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 149, 0, 0.2);
     transition: all 0.3s ease;
 }
 
-.info-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-3px);
+.level-item:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-orange);
 }
 
-.info-icon {
+.level-item:last-child {
+    margin-bottom: 0;
+}
+
+.level-indicator {
+    background: var(--gradient-orange);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.level-label {
+    font-size: 0.7rem;
+    opacity: 0.9;
+    margin-top: 0.2rem;
+}
+
+.level-details {
+    flex: 1;
+}
+
+.level-details h5 {
+    color: var(--light);
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.level-details p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.level-details strong {
+    color: var(--accent-orange);
+}
+
+.levels-note {
+    color: var(--gray);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-style: italic;
+}
+
+/* Итоговая секция партнёрств */
+.partnership-summary {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--gray-border);
+    text-align: center;
+}
+
+.partnership-summary .section-subtitle-apple {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.summary-item {
+    background: var(--card-bg-light);
+    border: 1px solid var(--gray-border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.summary-icon {
     width: 60px;
     height: 60px;
     background: var(--gradient-primary);
@@ -1334,19 +1436,18 @@ body {
     font-size: 1.5rem;
 }
 
-.info-card h4 {
+.summary-item h4 {
     font-size: 1.2rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     font-weight: 600;
     color: var(--light);
 }
 
-.info-card p {
+.summary-item p {
     color: var(--gray);
+    line-height: 1.6;
     font-size: 0.9rem;
-    line-height: 1.5;
 }
-
 
 /* Дополнительные услуги */
 .additional-services {
@@ -1447,7 +1548,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* ===== СТРАНИЦА КЕЙСОВ ===== */
+/* ===== КЕЙСЫ ===== */
 .cases-hero {
     text-align: center;
     padding: 3rem 0 4rem;
@@ -1651,34 +1752,6 @@ body {
     border: 1px solid var(--gray-border);
 }
 
-/* Градиенты для разных типов проектов */
-.case-card:nth-child(1) .photo-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(102, 126, 234, 0.8) 0%,
-        rgba(118, 75, 162, 0.4) 50%,
-        rgba(102, 126, 234, 0.8) 100%
-    );
-}
-
-.case-card:nth-child(2) .photo-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(240, 147, 251, 0.8) 0%,
-        rgba(245, 87, 108, 0.4) 50%,
-        rgba(240, 147, 251, 0.8) 100%
-    );
-}
-
-.case-card:nth-child(3) .photo-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(79, 172, 254, 0.8) 0%,
-        rgba(0, 242, 254, 0.4) 50%,
-        rgba(79, 172, 254, 0.8) 100%
-    );
-}
-
 /* Отзывы */
 .testimonials-section-apple {
     padding: 4rem 0;
@@ -1745,7 +1818,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ===== СТРАНИЦА КОНТАКТОВ ===== */
+/* ===== КОНТАКТЫ ===== */
 .contacts-hero {
     text-align: center;
     padding: 3rem 0 4rem;
@@ -1864,7 +1937,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
 }
 
-/* Форма */
+/* Форма обратной связи */
 .contact-form-section {
     height: fit-content;
 }
@@ -2014,6 +2087,7 @@ body.light-theme {
     min-height: 100vh;
 }
 
+/* Общие стили светлой темы */
 body.light-theme .status-bar {
     background: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid #E5E5E7;
@@ -2028,6 +2102,7 @@ body.light-theme .logo {
     background-clip: text;
 }
 
+/* Текст */
 body.light-theme .status-link,
 body.light-theme .app-name,
 body.light-theme .hero-subtitle-apple,
@@ -2042,7 +2117,6 @@ body.light-theme .price-note,
 body.light-theme .stat-label,
 body.light-theme .result-label,
 body.light-theme .client-company,
-body.light-theme .client-details .client-company,
 body.light-theme .faq-item p {
     color: #666666;
 }
@@ -2056,13 +2130,11 @@ body.light-theme .service-name,
 body.light-theme .case-content h3,
 body.light-theme .philosophy-card h3,
 body.light-theme .step-content h3,
-body.light-theme .testimonial-card h3,
 body.light-theme .contact-info h3,
 body.light-theme .form-card h3,
 body.light-theme .faq-item h4,
 body.light-theme .addon-card h4,
 body.light-theme .client-name,
-body.light-theme .client-details .client-name,
 body.light-theme .form-group label,
 body.light-theme .additional-options h4,
 body.light-theme .contact-username,
@@ -2070,14 +2142,7 @@ body.light-theme .contact-link {
     color: #373738;
 }
 
-body.light-theme .theme-toggle .fa-moon {
-    color: #666666;
-}
-
-body.light-theme .theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
+/* Карточки и контейнеры */
 body.light-theme .dock {
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -2116,7 +2181,9 @@ body.light-theme .philosophy-card,
 body.light-theme .process-step,
 body.light-theme .form-card,
 body.light-theme .faq-item,
-body.light-theme .addon-card {
+body.light-theme .addon-card,
+body.light-theme .partnership-card,
+body.light-theme .summary-item {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -2126,13 +2193,16 @@ body.light-theme .case-card:hover,
 body.light-theme .testimonial-card:hover,
 body.light-theme .contact-card:hover,
 body.light-theme .philosophy-card:hover,
-body.light-theme .process-step:hover {
+body.light-theme .process-step:hover,
+body.light-theme .summary-item:hover {
     border-color: var(--primary);
 }
 
+/* Внутренние элементы */
 body.light-theme .service-pricing,
 body.light-theme .additional-options,
-body.light-theme .case-results {
+body.light-theme .case-results,
+body.light-theme .process-step {
     background: rgba(0, 0, 0, 0.02);
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -2150,6 +2220,7 @@ body.light-theme .form-textarea:focus {
     background: rgba(255, 255, 255, 1);
 }
 
+/* Кнопки */
 body.light-theme .btn-apple-secondary {
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -2161,16 +2232,7 @@ body.light-theme .btn-apple-secondary:hover {
     border-color: #666666;
 }
 
-body.light-theme .contact-btn {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-body.light-theme .service-btn {
-    background: var(--gradient-primary);
-    color: white;
-}
-
+/* Особые элементы */
 body.light-theme .tech-tag {
     background: rgba(0, 0, 0, 0.05);
     color: #666666;
@@ -2191,6 +2253,7 @@ body.light-theme .cta-section-apple p {
     color: white;
 }
 
+/* Плавающие карточки */
 body.light-theme .floating-card {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -2213,37 +2276,8 @@ body.light-theme .floating-card::after {
     background: rgba(0, 0, 0, 0.7);
 }
 
-body.light-theme .feature i {
-    color: var(--accent);
-}
-
-body.light-theme .stars {
-    color: #FFD60A;
-}
-
-body.light-theme .hero-gradient {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .section-title-apple {
-    background: linear-gradient(45deg, #1D1D1F, #424245);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .services-title,
-body.light-theme .cases-title,
-body.light-theme .contacts-title {
-    background: linear-gradient(45deg, #1D1D1F, #424245);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
+/* Градиентный текст */
+body.light-theme .hero-gradient,
 body.light-theme .stat-number,
 body.light-theme .price,
 body.light-theme .result-value {
@@ -2253,6 +2287,241 @@ body.light-theme .result-value {
     background-clip: text;
 }
 
+body.light-theme .section-title-apple,
+body.light-theme .services-title,
+body.light-theme .cases-title,
+body.light-theme .contacts-title {
+    background: linear-gradient(45deg, #1D1D1F, #424245);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Плавные переходы */
+body,
+body *:not(.floating-card i) {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+
+/* ===== ДОПОЛНЕНИЯ ДЛЯ СВЕТЛОЙ ТЕМЫ ===== */
+
+/* Диаграмма процесса в партнёрских программах */
+body.light-theme .process-step {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .process-step .step-info h4 {
+    color: #373738;
+}
+
+body.light-theme .process-step .step-info p {
+    color: #666666;
+}
+
+/* Шкала процентов */
+body.light-theme .percentage-scale {
+    background: rgba(52, 199, 89, 0.05);
+    border: 1px solid rgba(52, 199, 89, 0.1);
+}
+
+body.light-theme .percentage-scale h4 {
+    color: var(--accent);
+}
+
+body.light-theme .range-label {
+    color: #373738;
+}
+
+body.light-theme .range-bar {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .scale-note {
+    color: #666666;
+}
+
+/* Список преимуществ */
+body.light-theme .benefit-text {
+    color: #373738;
+}
+
+body.light-theme .benefit-text strong {
+    color: var(--accent);
+}
+
+body.light-theme .benefit-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Условия */
+body.light-theme .conditions-box {
+    background: rgba(0, 122, 255, 0.05);
+    border: 1px solid rgba(0, 122, 255, 0.1);
+}
+
+body.light-theme .conditions-box h4 {
+    color: var(--primary);
+}
+
+body.light-theme .conditions-box li {
+    color: #373738;
+}
+
+/* Шкала уровней */
+body.light-theme .levels-scale {
+    background: rgba(255, 149, 0, 0.05);
+    border: 1px solid rgba(255, 149, 0, 0.1);
+}
+
+body.light-theme .levels-scale h4 {
+    color: var(--accent-orange);
+}
+
+body.light-theme .level-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 149, 0, 0.2);
+}
+
+body.light-theme .level-details h5 {
+    color: #373738;
+}
+
+body.light-theme .level-details p {
+    color: #666666;
+}
+
+body.light-theme .levels-note {
+    color: #666666;
+}
+
+/* Иконки в партнёрских программах */
+body.light-theme .partnership-tagline {
+    background: rgba(52, 199, 89, 0.05);
+    border: 1px solid rgba(52, 199, 89, 0.1);
+    color: #373738;
+}
+
+body.light-theme .partnership-tagline i {
+    color: var(--accent);
+}
+
+/* Заголовки партнёрских программ */
+body.light-theme .partnership-title {
+    color: #373738;
+}
+
+/* Описания партнёрских программ */
+body.light-theme .partnership-description {
+    color: #666666;
+}
+
+/* Итоговая секция партнёрств */
+body.light-theme .partnership-summary {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .partnership-summary .section-subtitle-apple {
+    color: #666666;
+}
+
+body.light-theme .partnership-summary .section-subtitle-apple i {
+    color: var(--primary);
+}
+
+/* Индикаторы процентов */
+body.light-theme .scale-percentage {
+    color: var(--accent);
+}
+
+/* Иконки в преимуществах и условиях */
+body.light-theme .benefit-item i,
+body.light-theme .scale-note i,
+body.light-theme .levels-note i {
+    color: var(--accent);
+}
+
+/* Маркеры в списках условий */
+body.light-theme .conditions-box li:before {
+    color: var(--primary);
+}
+
+/* Особенности услуг в карточках услуг */
+body.light-theme .feature {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .feature i {
+    color: var(--accent);
+}
+
+body.light-theme .feature span {
+    color: #666666;
+}
+
+/* Дополнительные опции в услугах */
+body.light-theme .additional-options {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .additional-options h4 {
+    color: #373738;
+}
+
+body.light-theme .option-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .option-name {
+    color: #666666;
+}
+
+body.light-theme .option-price {
+    color: var(--accent);
+}
+
+/* Цены в услугах */
+body.light-theme .service-pricing {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .price-note {
+    color: var(--accent);
+}
+
+/* Отзывы клиентов */
+body.light-theme .testimonial-text {
+    color: #373738;
+}
+
+body.light-theme .stars {
+    color: #FFD60A;
+}
+
+/* Аватары клиентов */
+body.light-theme .client-avatar {
+    background: var(--gradient-primary);
+}
+
+/* Кнопки контактов */
+body.light-theme .contact-btn {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+/* Плавающие карточки на главной */
+body.light-theme .floating-card::after {
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Оверлей изображений в кейсах */
 body.light-theme .photo-overlay {
     background: linear-gradient(
         135deg,
@@ -2266,115 +2535,152 @@ body.light-theme .case-photo i {
     color: white;
 }
 
+/* Индикатор главной страницы */
 body.light-theme .home-line {
     background: rgba(0, 0, 0, 0.2);
 }
 
-body.light-theme .option-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+/* Кнопки партнёрских программ */
+body.light-theme .partnership-btn {
+    background: var(--gradient-primary);
+    color: white;
 }
 
-body.light-theme .option-price {
-    color: var(--accent);
+body.light-theme .partnership-btn:hover {
+    box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
 }
 
-body.light-theme .feature {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+/* Иконки в иконках партнёрств */
+body.light-theme .partnership-icon i {
+    color: white;
 }
 
-/* Плавный переход темы */
-body,
-body *:not(.floating-card i) {
-    transition: background-color 0.3s ease, 
-                color 0.3s ease, 
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
+/* Бейджи партнёрских программ */
+body.light-theme .partnership-badge {
+    color: white;
 }
 
-/* ===== СВЕТЛАЯ ТЕМА ДЛЯ ПАРТНЁРСКИХ ПРОГРАММ ===== */
+/* Заголовки дополнительных услуг */
+body.light-theme .addon-card h4 {
+    color: #373738;
+}
+
+/* Цены дополнительных услуг */
+body.light-theme .addon-price {
+    color: var(--primary);
+}
+
+/* Ссылки в контактах */
+body.light-theme .contact-link {
+    color: #373738;
+}
+
+/* Элементы формы */
+body.light-theme .form-group label {
+    color: #373738;
+}
+
+/* Тень при наведении в светлой теме */
+body.light-theme .service-card:hover,
+body.light-theme .case-card:hover,
+body.light-theme .testimonial-card:hover,
+body.light-theme .contact-card:hover,
+body.light-theme .philosophy-card:hover,
+body.light-theme .process-step:hover,
+body.light-theme .addon-card:hover,
+body.light-theme .partnership-card:hover,
+body.light-theme .summary-item:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Границы разделов */
+body.light-theme .stats-section-apple,
+body.light-theme .additional-info-section,
+body.light-theme .partnership-summary {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Плавность переходов для всех элементов светлой темы */
+body.light-theme .service-card,
+body.light-theme .case-card,
+body.light-theme .testimonial-card,
+body.light-theme .contact-card,
+body.light-theme .philosophy-card,
+body.light-theme .process-step,
+body.light-theme .addon-card,
 body.light-theme .partnership-card,
-body.light-theme .info-card {
-    background: rgba(255, 255, 255, 0.9);
+body.light-theme .summary-item,
+body.light-theme .floating-card,
+body.light-theme .dock-app,
+body.light-theme .btn-apple-primary,
+body.light-theme .btn-apple-secondary,
+body.light-theme .service-btn,
+body.light-theme .contact-btn,
+body.light-theme .partnership-btn {
+    transition: all 0.3s ease;
+}
+
+/* ===== ИСПРАВЛЕНИЯ ДЛЯ ОТДЕЛЬНЫХ ЭЛЕМЕНТОВ ===== */
+
+/* Исправление для стрелок процесса */
+body.light-theme .process-arrow i {
+    color: var(--primary);
+}
+
+/* Исправление для иконок в уровнях */
+body.light-theme .level-indicator {
+    color: white;
+}
+
+/* Исправление для заливки шкалы */
+body.light-theme .bar-fill {
+    background: var(--gradient-success);
+}
+
+/* Исправление для иконок в секции итогов */
+body.light-theme .summary-icon i {
+    color: white;
+}
+
+/* Исправление для бейджей услуг */
+body.light-theme .service-badge {
+    color: white;
+}
+
+/* Исправление для технических тегов в кейсах */
+body.light-theme .tech-tag {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666666;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-body.light-theme .partnership-card:hover,
-body.light-theme .info-card:hover {
-    border-color: var(--primary);
+
+/* СВЕТЛАЯ ТЕМА */
+body.light-theme .process-step {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-body.light-theme .partnership-title,
-body.light-theme .info-card h4,
-body.light-theme .level-content h4 {
+body.light-theme .process-step .step-info h4 {
     color: #373738;
 }
 
-body.light-theme .partnership-description,
-body.light-theme .info-card p,
-body.light-theme .feature-item span,
-body.light-theme .security-features li,
-body.light-theme .bonus-box p,
-body.light-theme .level-content .level-conditions,
-body.light-theme .how-it-works li {
+body.light-theme .process-step .step-info p {
     color: #666666;
 }
 
-body.light-theme .partnership-description .highlight {
-    color: var(--primary);
-    background: rgba(0, 122, 255, 0.1);
-}
-
-body.light-theme .partnership-features,
-body.light-theme .level-card {
-    background: rgba(0, 0, 0, 0.02);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .feature-item i {
-    color: var(--accent);
-}
-
-body.light-theme .bonus-box {
-    background: rgba(52, 199, 89, 0.05);
-    border: 1px solid rgba(52, 199, 89, 0.1);
-}
-
-body.light-theme .bonus-box h4 {
-    color: var(--accent);
-}
-
-body.light-theme .bonus-box li {
-    color: #373738;
-}
-
-body.light-theme .security-features {
-    background: rgba(255, 45, 85, 0.05);
-    border: 1px solid rgba(255, 45, 85, 0.1);
-}
-
-body.light-theme .security-features h4 {
-    color: var(--accent-pink);
-}
-
-body.light-theme .how-it-works {
-    background: rgba(255, 149, 0, 0.05);
-    border: 1px solid rgba(255, 149, 0, 0.1);
-}
-
-body.light-theme .how-it-works h4 {
-    color: var(--accent-orange);
-}
-
-body.light-theme .additional-info-section {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .level-content p {
-    color: #373738;
-}
-
-
 /* ===== АДАПТИВНОСТЬ ===== */
+
+@media (min-width: 1025px) {
+    .process-step:not(:last-child)::after {
+        display: block; /* Показываем только на больших экранах */
+    }
+    
+    .process-step:nth-child(3)::after {
+        display: none; /* У последнего шага стрелки нет */
+    }
+}
+
 @media (max-width: 1024px) {
     .hero-section-apple {
         grid-template-columns: 1fr;
@@ -2399,6 +2705,17 @@ body.light-theme .level-content p {
     .contacts-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    .process-diagram {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+        gap: 1.5rem;
+    }
+    
+    /* Третий шаг растягиваем на всю ширину */
+    .process-step:nth-child(3) {
+        grid-column: span 2;
+        max-width: 80%;
+        margin: 0 auto;
     }
 }
 
@@ -2443,15 +2760,10 @@ body.light-theme .level-content p {
         font-size: 2.2rem;
     }
     
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .cases-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .testimonials-grid {
+    .services-grid,
+    .cases-grid,
+    .testimonials-grid,
+    .partnership-grid {
         grid-template-columns: 1fr;
     }
     
@@ -2486,15 +2798,6 @@ body.light-theme .level-content p {
         justify-content: center;
     }
     
-    .floating-card {
-        width: 100px;
-        padding: 1rem;
-    }
-    
-    .floating-card i {
-        font-size: 1.5rem;
-    }
-    
     .case-results {
         grid-template-columns: 1fr;
     }
@@ -2507,18 +2810,12 @@ body.light-theme .level-content p {
         font-size: 2.5rem;
     }
     
-    .app-name {
-        font-size: 0.7rem;
-        margin-top: 0.4rem;
-    }
-    
     .dock {
         gap: 1.5rem;
         padding: 1rem 1.5rem;
         border-radius: 24px;
         width: calc(100% - 2rem);
         margin: 0 1rem 2rem 1rem;
-        justify-content: center;
     }
     
     .dock-app {
@@ -2535,14 +2832,12 @@ body.light-theme .level-content p {
         height: 28px;
     }
     
-    .main-container[data-scroll-container] {
-        -webkit-overflow-scrolling: touch;
-    }
-    .partnership-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .app-name {
+        font-size: 0.7rem;
+        margin-top: 0.4rem;
     }
     
+    /* Адаптивность партнёрских программ */
     .partnership-card {
         padding: 1.5rem;
     }
@@ -2560,22 +2855,53 @@ body.light-theme .level-content p {
         font-size: 1.5rem;
     }
     
-    .level-card {
-        padding: 1rem;
+    .process-diagram {
+        flex-direction: column;
+        gap: 1.5rem;
     }
     
-    .level-number {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
+    .process-arrow {
+        transform: rotate(90deg);
+        padding: 0.5rem 0;
     }
     
-    .info-grid {
+    .percentage-scale .scale-item,
+    .level-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .scale-range {
+        padding-right: 0;
+        width: 100%;
+    }
+    
+    .scale-percentage {
+        text-align: center;
+    }
+    
+    .level-indicator {
+        width: 100%;
+        max-width: 100px;
+    }
+    
+    .summary-grid {
         grid-template-columns: 1fr;
     }
+    .process-diagram {
+        grid-template-columns: 1fr; /* 1 колонка */
+        gap: 1rem;
+    }
     
-    .info-card {
-        padding: 1.5rem;
+    .process-step {
+        min-height: 130px;
+        padding: 1.2rem;
+    }
+    
+    .process-step:nth-child(3) {
+        grid-column: span 1;
+        max-width: 100%;
     }
 }
 
@@ -2619,19 +2945,8 @@ body.light-theme .level-content p {
         font-size: 2rem;
     }
     
-    .service-card, .case-card, .testimonial-card, .contact-card {
-        padding: 1.5rem;
-    }
-    
-    .form-card {
-        padding: 1.5rem;
-    }
-    
-    .philosophy-card {
-        padding: 1.5rem;
-    }
-    
-    .process-step {
+    .service-card, .case-card, .testimonial-card, .contact-card,
+    .form-card, .philosophy-card, .process-step, .partnership-card {
         padding: 1.5rem;
     }
     
@@ -2647,11 +2962,7 @@ body.light-theme .level-content p {
         font-size: 1.1rem;
     }
     
-    .addons-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .faq-grid {
+    .addons-grid, .faq-grid {
         grid-template-columns: 1fr;
     }
     
@@ -2678,36 +2989,27 @@ body.light-theme .level-content p {
     .app-name {
         font-size: 0.7rem;
     }
-    .partnership-grid {
-        margin: 2rem 0 3rem;
-    }
-    
-    .partnership-card {
-        padding: 1.2rem;
-    }
-    
-    .partnership-title {
-        font-size: 1.3rem;
-    }
-    
-    .partnership-features,
-    .security-features,
-    .bonus-box,
-    .how-it-works {
+    .process-step {
         padding: 1rem;
+        min-height: 110px;
     }
     
-    .feature-item {
-        font-size: 0.9rem;
-    }
-    
-    .additional-info-section {
-        margin-top: 3rem;
-        padding-top: 3rem;
-    }
-    
-    .level-content h4 {
+    .process-step .step-number {
+        width: 35px;
+        height: 35px;
         font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .process-step .step-info h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .process-step .step-info p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+        max-height: 3.9em;
     }
 }
 
@@ -2740,22 +3042,7 @@ body.light-theme .level-content p {
     .floating-card {
         animation: none;
     }
-    
-    .main-container[data-scroll-container] {
-        scroll-behavior: auto;
-    }
 }
-
-
-
-
-
-
-
-
-
-/* =================================================================================================================\
-======================================================================================================================== */
 
 
 
