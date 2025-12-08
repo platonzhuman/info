@@ -2906,19 +2906,6 @@ body.light-theme .process-step .step-info p {
         grid-column: span 1;
         max-width: 100%;
     }
-    .partnership-btn {
-        padding: 0.8rem 1.2rem !important;
-        font-size: 0.9rem !important;
-        min-height: 44px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.5rem !important;
-        width: 100% !important;
-        margin: 0 auto !important; /* Центрирование */
-        border-radius: 10px !important;
-        text-align: center !important;
-    }
 }
 
 @media (max-width: 480px) {
@@ -3060,15 +3047,95 @@ body.light-theme .process-step .step-info p {
     }
 }
 
+@media (max-width: 768px) {
+    /* Уменьшаем кнопки партнёрских программ */
+    .partnership-btn {
+        padding: 0.8rem 1.2rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        margin: 0 auto !important; /* Центрирование */
+        border-radius: 10px !important;
+        text-align: center !important;
+    }
+    
+    /* Центрируем контейнер кнопок внутри карточки */
+    .partnership-card {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .partnership-btn i {
+        font-size: 0.9rem !important;
+    }
+}
 
+/* Дополнительный фикс для очень узких экранов */
+@media (max-width: 480px) {
+    .partnership-btn {
+        padding: 0.7rem 1rem !important;
+        font-size: 0.85rem !important;
+        min-height: 40px !important;
+        gap: 0.4rem !important;
+    }
+    
+    .partnership-btn i {
+        font-size: 0.8rem !important;
+    }
+}
 
+/* ===== ФИКС ДЛЯ ПАРТНЁРСКИХ КАРТОЧЕК НА УЗКИХ ЭКРАНАХ ===== */
+/* Основной фикс для сетки партнёрств */
+@media (max-width: 768px) {
+    .partnership-grid {
+        grid-template-columns: 1fr !important; /* Всегда 1 колонка на мобилках */
+        gap: 1.5rem !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+    
+    .partnership-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 1.5rem !important;
+        box-sizing: border-box !important; /* Важно! Включает padding в ширину */
+        overflow: hidden !important; /* Скрывает всё, что выходит за границы */
+    }
+    
+    /* Убираем горизонтальный скролл на контейнере */
+    .main-container {
+        overflow-x: hidden !important;
+        padding: 1rem !important;
+        width: 100% !important;
+    }
+    
+    /* Уменьшаем текст для лучшего отображения */
+    .partnership-title {
+        font-size: 1.3rem !important;
+        line-height: 1.3 !important;
+        word-break: break-word !important;
+    }
+}
 
-
-
-
-
-
-
-
-
-
+/* Дополнительный фикс для СУПЕР узких экранов */
+@media (max-width: 400px) {
+    .partnership-card {
+        padding: 1.2rem !important;
+        margin: 0 !important;
+    }
+    
+    .partnership-title {
+        font-size: 1.1rem !important;
+    }
+    
+    .partnership-description {
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+    }
+}
