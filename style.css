@@ -2896,7 +2896,7 @@ body.light-theme .process-step .step-info p {
         grid-template-columns: 1fr; /* 1 колонка */
         gap: 1rem;
     }
-    
+
     .process-step {
         min-height: 130px;
         padding: 1.2rem;
