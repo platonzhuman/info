@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initButtonHandlers();
     initServiceNavigation();
+    initServicesNavigation(); 
 });
 
 // ==================== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ====================
@@ -87,6 +88,76 @@ function initDockApps() {
     
     showSection('home');
 }
+
+
+// ==================== НАВИГАЦИЯ УСЛУГ ====================
+// ==================== НАВИГАЦИЯ УСЛУГ ====================
+function initServicesNavigation() {
+    const tabs = document.querySelectorAll('.nav-tab');
+    const indicator = document.querySelector('.nav-indicator');
+    
+    if (!tabs.length || !indicator) return;
+    
+    // Функция для переключения вкладок
+    function switchTab(tabName) {
+        // Скрываем все вкладки
+        document.querySelectorAll('.services-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Показываем выбранную вкладку
+        const activeTab = document.getElementById(`tab-${tabName}`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+        
+        // Обновляем активную кнопку
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.getAttribute('data-tab') === tabName) {
+                tab.classList.add('active');
+            }
+        });
+        
+        // Обновляем индикатор
+        updateIndicator();
+    }
+    
+    // Функция обновления индикатора
+    function updateIndicator() {
+        const activeTab = document.querySelector('.nav-tab.active');
+        if (!activeTab) return;
+        
+        const tabWidth = activeTab.offsetWidth;
+        const tabLeft = activeTab.offsetLeft;
+        
+        indicator.style.transform = `translateX(${tabLeft}px)`;
+        indicator.style.width = `${tabWidth}px`;
+    }
+    
+    // Вешаем обработчики на кнопки
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabType = this.getAttribute('data-tab');
+            switchTab(tabType);
+        });
+    });
+    
+    // Инициализация по умолчанию
+    switchTab('sites');
+    updateIndicator();
+    
+    // Обновляем при ресайзе
+    window.addEventListener('resize', updateIndicator);
+}
+
+// Добавьте вызов в DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... существующий код ...
+    initServicesNavigation();
+});
+
+
 
 // ==================== НАВИГАЦИЯ К УСЛУГАМ ====================
 function initHeroVisualClicks() {
